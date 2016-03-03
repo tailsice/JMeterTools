@@ -1,0 +1,13 @@
+#!/bin/bash
+
+echo "remove simple.err"
+[ -f simple.err ] && rm simple.err
+
+echo "remove simple.log"
+[ -f simple.log ] && rm simple.log
+
+echo "empty ana-api-chain.log"
+cat /dev/null > ana-api-chain.log
+
+echo "empty tomcat.debug.log"
+cat /dev/null > tomcat.debug.log

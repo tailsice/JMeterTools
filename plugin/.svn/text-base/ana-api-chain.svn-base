@@ -1,0 +1,39 @@
+#!/bin/bash
+
+# set environment variable
+JWD=/home/jmeter/Desktop/jmeter-working-dir
+
+# set cfg file path
+CFG=$JWD/props/ana-api-chain.cfg
+
+function set_properties() {
+	local key=$1
+	local value=$2
+
+	sed -i 's/'$key'=.*/'$key'='$value'/' "$CFG"
+}
+
+function show_usage() {
+	echo "usgae: $0 <http|https> <port> <host> <user account> <user password> <thread loop> <file loop> <timer in ms>"
+	echo "example: $0 https 443 140.92.25.182 webuser1 aaaa 1 1 1000"
+}
+
+#set_properties "COSA.HOST" "localhost"
+
+if [ $# -lt 8 ]; then
+	show_usage
+	exit 1
+else
+	set_properties "COSA.PROTOCOL" $1
+	set_properties "COSA.PORT" $2
+	set_properties "COSA.HOST" $3
+	set_properties "COSA.USER.NAME" $4
+	set_properties "COSA.USER.PASS" $5
+	set_properties "COSA.THREAD.LOOPS" $6
+	set_properties "COSA.UPLOAD.LOOPS" $7
+	set_properties "COSA.TIMER.MS" $8
+
+	$JWD/bin/exec-plan -t ana-api-chain -n
+
+	[ $? -eq 0 ] && echo "Done"
+fi

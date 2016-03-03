@@ -1,0 +1,45 @@
+#################
+# REQUIRED      #
+#################
+COSA.HOST=140.92.25.249
+PLAN.DURATION.SECOND=1800
+
+
+
+#################
+# DO NOT CHANGE #
+#################
+jmeter.save.saveservice.output_format=csv
+jmeter.save.saveservice.assertion_results_failure_message=false
+jmeter.save.saveservice.assertion_results=none
+jmeter.save.saveservice.data_type=false
+jmeter.save.saveservice.label=true
+jmeter.save.saveservice.response_code=true
+jmeter.save.saveservice.response_data=false
+jmeter.save.saveservice.response_data.on_error=false
+jmeter.save.saveservice.response_message=false
+jmeter.save.saveservice.successful=true
+jmeter.save.saveservice.thread_name=true
+jmeter.save.saveservice.time=true
+jmeter.save.saveservice.subresults=false
+jmeter.save.saveservice.assertions=false
+jmeter.save.saveservice.latency=true
+jmeter.save.saveservice.samplerData=false
+jmeter.save.saveservice.responseHeaders=false
+jmeter.save.saveservice.requestHeaders=false
+jmeter.save.saveservice.encoding=false
+jmeter.save.saveservice.bytes=true
+jmeter.save.saveservice.url=false
+jmeter.save.saveservice.filename=false
+jmeter.save.saveservice.hostname=true
+jmeter.save.saveservice.thread_counts=true
+jmeter.save.saveservice.sample_count=true
+jmeter.save.saveservice.idle_time=true
+jmeter.save.saveservice.timestamp_format=ms
+#jmeter.save.saveservice.timestamp_format=yyyy/MM/dd HH:mm:ss.SSS
+jmeter.save.saveservice.timestamp_format=yyyy-MM-dd HH:mm:ss
+jmeter.save.saveservice.default_delimiter=,
+#jmeter.save.saveservice.default_delimiter=\t
+jmeter.save.saveservice.print_field_names=true
+#jmeter.save.saveservice.xml_pi=<?xml-stylesheet type="text/xsl" href="../extras/jmeter-results-detail-report_21.xsl"?>
+#jmeter.save.saveservice.base_prefix=~/

@@ -1,0 +1,4 @@
+#!/bin/bash
+
+touch /tmp/ana-api-chain.log
+rm /tmp/ana-api-chain.log*

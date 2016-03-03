@@ -1,0 +1,11 @@
+#!/bin/bash
+
+ID=$1
+
+echo "load simple.log"
+cat simple.log >> test-run.$ID
+
+echo >> test-run.$ID
+
+echo "load ana-api-chain.log"
+cat ana-api-chain.log >> test-run.$ID

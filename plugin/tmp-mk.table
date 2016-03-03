@@ -1,0 +1,49 @@
+#!/bin/bash
+
+LOOP=3
+
+function printTable() {
+	local log=test-run.$1.$2
+
+	local jmeterElapsedTimeU
+	local jmeterElapsedTimeD
+	local filterElapsedTimeU
+	local filterElapsedTimeD
+	local totalCPUTimeU
+	local totalCPUTimeD
+	for ((i=1; i<=$LOOP; i++))
+	do
+		jmeterElapsedTimeU[$i]=$(grep upload $log | head -n $LOOP | awk -F ',' '{print $2}' | sed -n $i'p')
+		jmeterElapsedTimeD[$i]=$(grep download $log | head -n $LOOP | awk -F ',' '{print $2}' | sed -n $i'p')
+		filterElapsedTimeU[$i]=$(grep Elapsed $log | tail -n $(($LOOP * 2)) | awk '{print $3}' | sed -n $((($i-1) * 2 + 1))'p')
+		filterElapsedTimeD[$i]=$(grep Elapsed $log | tail -n $(($LOOP * 2)) | awk '{print $3}' | sed -n $((($i-1) * 2 + 2))'p')
+		totalCPUTimeU[$i]=$(grep "Total CPU" $log | tail -n $(($LOOP * 2)) | awk '{print $4}' | sed -n $((($i-1) * 2 + 1))'p')
+		totalCPUTimeD[$i]=$(grep "Total CPU" $log | tail -n $(($LOOP * 2)) | awk '{print $4}' | sed -n $((($i-1) * 2 + 2))'p')
+	done
+
+
+	echo -e "$1\tJmeter Elapsed Time\tFilter Elapsed Time\tTotal CPU Time"
+	echo -e "$2\t\tUpload Download\t\tUpload Download\t\tUpload Download"
+	for ((i=1; i<=$LOOP; i++))
+	do
+		echo -e "$i\t\t${jmeterElapsedTimeU[$i]}\t${jmeterElapsedTimeD[$i]}\t\t${filterElapsedTimeU[$i]}\t${filterElapsedTimeD[$i]}\t\t${totalCPUTimeU[$i]}\t${totalCPUTimeD[$i]}"
+	done
+
+}
+
+printTable barcelona 1B
+printTable barcelona 1KB
+printTable barcelona 10KB
+printTable barcelona 100KB
+printTable barcelona 1MB
+printTable barcelona 10MB
+printTable barcelona 100MB
+
+printTable promise 1B
+printTable promise 1KB
+printTable promise 10KB
+printTable promise 100KB
+printTable promise 1MB
+printTable promise 10MB
+printTable promise 100MB
+

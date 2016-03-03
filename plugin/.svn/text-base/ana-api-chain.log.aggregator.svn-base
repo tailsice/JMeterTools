@@ -1,0 +1,198 @@
+#!/bin/bash
+
+OUT=/tmp/ana-api-chain.stat
+cat /dev/null > $OUT
+
+function min() {
+	local value=$1
+	local index=$2
+	[ ${MIN[$index]} -eq -1 ] && MIN[$index]=$value
+	[ ${MIN[$index]} -gt $value ] && MIN[$index]=$value
+}
+function max() {
+	local value=$1
+	local index=$2
+	[ ${MAX[$index]} -lt $value ] && MAX[$index]=$value
+}
+function sum() {
+	local value=$1
+	local index=$2
+	SUM[$index]=$((${SUM[$index]} + $value))
+}
+function cal() {
+	local value=$1
+	min $value 0
+	max $value 0
+	sum $value 0
+}
+function cal2() {
+	local value1=$1
+	local value2=$2
+
+	local v1=$(echo $value1 | awk -F '/' '{print $1}')
+	local v2=$(echo $value1 | awk -F '/' '{print $2}')
+	local v3=$(echo $value2 | awk -F ')' '{print $1}' | sed 's/(//' | sed 's/%//')
+	local v4=$(echo $value2 | awk -F ')' '{print $2}' | sed 's/\[//' | sed 's/\]//' | sed 's/%//')
+
+	min $v1 1
+	min $v2 2
+	min $v3 3
+	[ "$v4" == "" ] || min $v4 4
+	max $v1 1
+	max $v2 2
+	max $v3 3
+	[ "$v4" == "" ] || max $v4 4
+	sum $v1 1
+	sum $v2 2
+	sum $v3 3
+	[ "$v4" == "" ] || sum $v4 4
+
+}
+
+STAT=
+function mkstat() {
+	local statType=$1
+	local lineNum=$2
+
+	local i
+	for ((i=0; i<5; i++))
+	do
+		MIN[$i]=-1
+		MAX[$i]=-1
+		SUM[$i]=0
+		AVG[$i]=0
+	done
+
+        while read filepath
+        do
+		case $statType in
+		1)
+	                local value1=$(sed -n $lineNum'p' $filepath | awk '{print $3}')
+	                local value2=$(sed -n $lineNum'p' $filepath | awk '{print $5}')
+			cal2 $value1 $value2 ;;
+		2)
+	                local value=$(sed -n $lineNum'p' $filepath | awk '{print $3}')
+			cal $value ;;
+		3)
+	                local value=$(sed -n $lineNum'p' $filepath | awk '{print $3}')
+			cal $value ;;
+		4)
+	                local value=$(sed -n $lineNum'p' $filepath | awk '{print $4}')
+			cal $value ;;
+		5)
+	                local value=$(sed -n $lineNum'p' $filepath | awk '{print $4}')
+			cal $value ;;
+		6)
+	                local value=$(sed -n $lineNum'p' $filepath | awk '{print $7}')
+			cal $value ;;
+		7)
+	                local value=$(sed -n $lineNum'p' $filepath | awk '{print $7}')
+			cal $value ;;
+		8)
+	                local value=$(sed -n $lineNum'p' $filepath | awk '{print $8}' | sed 's/%//')
+			cal $value ;;
+		esac
+
+        done < <(find /tmp/ana-api-chain.log.* -maxdepth 0 -type f)
+
+	if [ $statType -eq 1 ]; then
+		for ((i=1; i<5; i++))
+		do
+			AVG[$i]=$((${SUM[$i]} / $COUNT))
+		done
+
+		MIN[0]="(${MIN[1]},${MIN[2]},${MIN[3]},${MIN[4]})"
+		MAX[0]="(${MAX[1]},${MAX[2]},${MAX[3]},${MAX[4]})"
+		SUM[0]="(${SUM[1]},${SUM[2]},${SUM[3]},${SUM[4]})"
+		AVG[0]="(${AVG[1]},${AVG[2]},${AVG[3]},${AVG[4]})"
+	else
+		AVG[0]=$((${SUM[0]} / $COUNT))
+	fi
+
+	STAT="count: $COUNT, min: ${MIN[0]}, max: ${MAX[0]}, avg: ${AVG[0]}"
+}
+
+function procline() {
+	local line=$1
+	local lineNum=$2
+
+	echo "$line" | grep '@$' 2>&1 >/dev/null
+	if [ $? -eq 0 ]; then
+		echo "$line" | grep '^Elapsed time:' 2>&1 >/dev/null
+		if [ $? -eq 0 ]; then
+			mkstat 2 $lineNum
+			return 2
+		fi
+		echo "$line" | grep '^Latency time:' 2>&1 >/dev/null
+		if [ $? -eq 0 ]; then
+			mkstat 3 $lineNum
+			return 3
+		fi
+		echo "$line" | grep '^Response body size:' 2>&1 >/dev/null
+		if [ $? -eq 0 ]; then
+			mkstat 4 $lineNum
+			return 4
+		fi
+		echo "$line" | grep '^Response headers size:' 2>&1 >/dev/null
+		if [ $? -eq 0 ]; then
+			mkstat 5 $lineNum
+			return 5
+		fi
+		echo "$line" | grep '^CPU time of whole API chain:' 2>&1 >/dev/null
+		if [ $? -eq 0 ]; then
+			mkstat 6 $lineNum
+			return 6
+		fi
+		echo "$line" | grep '^Elapsed time of entry point API:' 2>&1 >/dev/null
+		if [ $? -eq 0 ]; then
+			mkstat 7 $lineNum
+			return 7
+		fi
+		echo "$line" | grep '^Percentage of CPU time over elapsed time:' 2>&1 >/dev/null
+		if [ $? -eq 0 ]; then
+			mkstat 8 $lineNum
+			return 8
+		fi
+
+		mkstat 1 $lineNum
+		return 1
+	else
+		STAT=
+	fi
+}
+
+COUNT=
+function aggregate() {
+	COUNT=$(find /tmp/ana-api-chain.log.* -maxdepth 0 -type f | wc -l)
+
+	local baseFilePath=$(find /tmp/ana-api-chain.log.* -maxdepth 0 -type f | head -n 1)
+	local baseFilePathLines=$(wc -l $baseFilePath | awk '{print $1}')
+	local lineNum=0;
+	while read line
+	do
+		lineNum=$(($lineNum + 1))
+		procline "$line" "$lineNum"
+		echo "$line $STAT" >> $OUT
+		echo "processing line $lineNum/$baseFilePathLines"
+
+	done < $baseFilePath
+}
+function checkline() {
+	local lines=-1
+	while read filepath
+	do
+		local linesCurrent=$(wc -l $filepath | awk '{print $1}')
+		if [ $lines -eq -1 ]; then
+			lines=$linesCurrent
+		elif [ $lines -ne $linesCurrent ]; then
+			echo "FAIL: lines of log files are not the same" | tee -a $OUT
+			exit 1
+		fi
+	done < <(find /tmp/ana-api-chain.log.* -maxdepth 0 -type f)
+}
+function main() {
+	checkline
+	aggregate
+}
+
+main

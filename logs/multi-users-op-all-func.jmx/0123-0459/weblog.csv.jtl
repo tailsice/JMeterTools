@@ -1,0 +1,28 @@
+timeStamp,elapsed,label,responseCode,threadName,success,bytes,grpThreads,allThreads,Latency,SampleCount,ErrorCount,Hostname,IdleTime
+2014-01-23 04:59:24,1035,user login,200,cosa2 - ubuntu 2-1,true,201,1,1,1035,1,0,ubuntu,0
+2014-01-23 04:59:25,1272,upload file,200,cosa2 - ubuntu 2-1,true,488,1,1,1272,1,0,ubuntu,0
+2014-01-23 04:59:26,297,download file,200,cosa2 - ubuntu 2-1,true,1570,1,1,297,1,0,ubuntu,0
+2014-01-23 04:59:26,211,delete file,200,cosa2 - ubuntu 2-1,true,285,1,1,211,1,0,ubuntu,0
+2014-01-23 04:59:27,183,create folder,200,cosa2 - ubuntu 2-1,true,467,1,1,183,1,0,ubuntu,0
+2014-01-23 04:59:27,203,delete folder,200,cosa2 - ubuntu 2-1,true,285,1,1,203,1,0,ubuntu,0
+2014-01-23 04:59:27,96,user login,200,cosa2 - ubuntu 2-1,true,201,1,1,96,1,0,ubuntu,0
+2014-01-23 04:59:27,369,upload file,200,cosa2 - ubuntu 2-1,true,488,1,1,369,1,0,ubuntu,0
+2014-01-23 04:59:27,315,download file,200,cosa2 - ubuntu 2-1,true,1586,1,1,314,1,0,ubuntu,0
+2014-01-23 04:59:28,205,delete file,200,cosa2 - ubuntu 2-1,true,285,1,1,205,1,0,ubuntu,0
+2014-01-23 04:59:28,152,create folder,200,cosa2 - ubuntu 2-1,true,467,1,1,152,1,0,ubuntu,0
+2014-01-23 04:59:28,181,delete folder,200,cosa2 - ubuntu 2-1,true,285,1,1,181,1,0,ubuntu,0
+2014-01-23 04:59:28,98,user login,200,cosa2 - ubuntu 2-1,true,201,1,1,98,1,0,ubuntu,0
+2014-01-23 04:59:29,407,upload file,200,cosa2 - ubuntu 2-1,true,488,1,1,407,1,0,ubuntu,0
+2014-01-23 04:59:29,256,download file,200,cosa2 - ubuntu 2-1,true,1588,1,1,255,1,0,ubuntu,0
+2014-01-23 04:59:29,186,delete file,200,cosa2 - ubuntu 2-1,true,285,1,1,186,1,0,ubuntu,0
+2014-01-23 04:59:29,142,create folder,200,cosa2 - ubuntu 2-1,true,467,1,1,142,1,0,ubuntu,0
+2014-01-23 04:59:30,165,delete folder,200,cosa2 - ubuntu 2-1,true,285,1,1,165,1,0,ubuntu,0
+2014-01-23 04:59:30,117,user login,200,cosa2 - ubuntu 2-1,true,201,1,1,117,1,0,ubuntu,0
+2014-01-23 04:59:30,350,upload file,200,cosa2 - ubuntu 2-1,true,488,1,1,350,1,0,ubuntu,0
+2014-01-23 04:59:30,243,download file,200,cosa2 - ubuntu 2-1,true,1574,1,1,242,1,0,ubuntu,0
+2014-01-23 04:59:31,182,delete file,200,cosa2 - ubuntu 2-1,true,285,1,1,182,1,0,ubuntu,0
+2014-01-23 04:59:31,166,create folder,200,cosa2 - ubuntu 2-1,true,467,1,1,166,1,0,ubuntu,0
+2014-01-23 04:59:31,176,delete folder,200,cosa2 - ubuntu 2-1,true,285,1,1,176,1,0,ubuntu,0
+2014-01-23 04:59:31,103,user login,200,cosa2 - ubuntu 2-1,true,201,1,1,103,1,0,ubuntu,0
+2014-01-23 04:59:31,373,upload file,200,cosa2 - ubuntu 2-1,true,488,1,1,373,1,0,ubuntu,0
+2014-01-23 04:59:32,169,download file,Non HTTP response code: java.net.SocketException,cosa2 - ubuntu 2-1,false,2263,1,1,0,1,1,ubuntu,0

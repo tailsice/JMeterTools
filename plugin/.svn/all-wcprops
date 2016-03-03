@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/jmeter/!svn/ver/1128/trunk/jmeter-working-dir/plugin
+END
+debugger.log.cleaner
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/jmeter/!svn/ver/1177/trunk/jmeter-working-dir/plugin/debugger.log.cleaner
+END
+1B-0.txt
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/jmeter/!svn/ver/1139/trunk/jmeter-working-dir/plugin/1B-0.txt
+END
+ana-api-chain.log.cleaner
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/jmeter/!svn/ver/1208/trunk/jmeter-working-dir/plugin/ana-api-chain.log.cleaner
+END
+debugger.log.parser
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/jmeter/!svn/ver/1231/trunk/jmeter-working-dir/plugin/debugger.log.parser
+END
+tmp-mk.report.log
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/jmeter/!svn/ver/1206/trunk/jmeter-working-dir/plugin/tmp-mk.report.log
+END
+debugger.log.fetcher
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/jmeter/!svn/ver/1157/trunk/jmeter-working-dir/plugin/debugger.log.fetcher
+END
+test-run-log.tgz
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/jmeter/!svn/ver/1130/trunk/jmeter-working-dir/plugin/test-run-log.tgz
+END
+ana-api-chain
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/jmeter/!svn/ver/1242/trunk/jmeter-working-dir/plugin/ana-api-chain
+END
+ana-api-chain.log.aggregator
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/jmeter/!svn/ver/1212/trunk/jmeter-working-dir/plugin/ana-api-chain.log.aggregator
+END
+tmp-clean.all.log
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/jmeter/!svn/ver/1206/trunk/jmeter-working-dir/plugin/tmp-clean.all.log
+END
+tmp-mk.table
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/jmeter/!svn/ver/1206/trunk/jmeter-working-dir/plugin/tmp-mk.table
+END

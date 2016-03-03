@@ -1,0 +1,2442 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="2.4" jmeter="2.9 r1437961">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Test Plan" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments">
+          <elementProp name="PLAN.RUNID" elementType="Argument">
+            <stringProp name="Argument.name">PLAN.RUNID</stringProp>
+            <stringProp name="Argument.value">${__P(PLAN.RUNID)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="PLAN.DURATION.SECOND" elementType="Argument">
+            <stringProp name="Argument.name">PLAN.DURATION.SECOND</stringProp>
+            <stringProp name="Argument.value">${__P(PLAN.DURATION.SECOND)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="TIMER.MEAN.MS" elementType="Argument">
+            <stringProp name="Argument.name">TIMER.MEAN.MS</stringProp>
+            <stringProp name="Argument.value">${__P(TIMER.MEAN.MS)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="TIMER.STD.MS" elementType="Argument">
+            <stringProp name="Argument.name">TIMER.STD.MS</stringProp>
+            <stringProp name="Argument.value">${__P(TIMER.STD.MS)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="COSA.VERSION" elementType="Argument">
+            <stringProp name="Argument.name">COSA.VERSION</stringProp>
+            <stringProp name="Argument.value">${__P(COSA.VERSION,)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="COSA.PROTOCOL" elementType="Argument">
+            <stringProp name="Argument.name">COSA.PROTOCOL</stringProp>
+            <stringProp name="Argument.value">${__P(COSA.PROTOCOL,)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="COSA.HOST" elementType="Argument">
+            <stringProp name="Argument.name">COSA.HOST</stringProp>
+            <stringProp name="Argument.value">${__P(COSA.HOST)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="COSA.USER.IDX.FIRST" elementType="Argument">
+            <stringProp name="Argument.name">COSA.USER.IDX.FIRST</stringProp>
+            <stringProp name="Argument.value">${__P(COSA.USER.IDX.FIRST)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="COSA.USER.IDX.LAST" elementType="Argument">
+            <stringProp name="Argument.name">COSA.USER.IDX.LAST</stringProp>
+            <stringProp name="Argument.value">${__P(COSA.USER.IDX.LAST)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="COSA.USER.PREFIX" elementType="Argument">
+            <stringProp name="Argument.name">COSA.USER.PREFIX</stringProp>
+            <stringProp name="Argument.value">${__P(COSA.USER.PREFIX)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="COSA.UPLOAD.FILE.ALGO" elementType="Argument">
+            <stringProp name="Argument.name">COSA.UPLOAD.FILE.ALGO</stringProp>
+            <stringProp name="Argument.value">${__P(COSA.UPLOAD.FILE.ALGO,)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="COSA.UPLOAD.FILE.PATH" elementType="Argument">
+            <stringProp name="Argument.name">COSA.UPLOAD.FILE.PATH</stringProp>
+            <stringProp name="Argument.value">${__P(COSA.UPLOAD.FILE.PATH)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="COSA.UPLOAD.FILE.WORKLOAD.METADATA.PATH" elementType="Argument">
+            <stringProp name="Argument.name">COSA.UPLOAD.FILE.WORKLOAD.METADATA.PATH</stringProp>
+            <stringProp name="Argument.value">${__P(COSA.UPLOAD.FILE.WORKLOAD.METADATA.PATH,)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="COSA.UPLOAD.FILE.WORKLOAD.METADATA.TOPN" elementType="Argument">
+            <stringProp name="Argument.name">COSA.UPLOAD.FILE.WORKLOAD.METADATA.TOPN</stringProp>
+            <stringProp name="Argument.value">${__P(COSA.UPLOAD.FILE.WORKLOAD.METADATA.TOPN,)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="COSA.PORT" elementType="Argument">
+            <stringProp name="Argument.name">COSA.PORT</stringProp>
+            <stringProp name="Argument.value">${__P(COSA.PORT)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+        </collectionProp>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="set COSA.v?.THREADS" enabled="true">
+        <collectionProp name="Arguments.arguments">
+          <elementProp name="COSA.v1.THREADS" elementType="Argument">
+            <stringProp name="Argument.name">COSA.v1.THREADS</stringProp>
+            <stringProp name="Argument.value">${__javaScript( ${COSA.VERSION}==1 ? ${COSA.USER.IDX.LAST} - ${COSA.USER.IDX.FIRST} + 1 : 0 ; )}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="COSA.v2.THREADS" elementType="Argument">
+            <stringProp name="Argument.name">COSA.v2.THREADS</stringProp>
+            <stringProp name="Argument.value">${__javaScript( ${COSA.VERSION}==2 ? ${COSA.USER.IDX.LAST} - ${COSA.USER.IDX.FIRST} + 1 : 0 ; )}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+        </collectionProp>
+      </Arguments>
+      <hashTree/>
+      <kg.apc.jmeter.config.VariablesFromCSV guiclass="kg.apc.jmeter.config.VariablesFromCSVGui" testclass="kg.apc.jmeter.config.VariablesFromCSV" testname="set file*" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+        <stringProp name="TestPlan.comments">Plugin help available here: http://jmeter-plugins.org/wiki/VariablesFromCSV</stringProp>
+        <stringProp name="filename">${COSA.UPLOAD.FILE.WORKLOAD.METADATA.PATH}</stringProp>
+        <stringProp name="variablesPrefix"></stringProp>
+        <stringProp name="delimiter">,</stringProp>
+        <boolProp name="storeSysProp">false</boolProp>
+      </kg.apc.jmeter.config.VariablesFromCSV>
+      <hashTree/>
+      <CookieManager guiclass="CookiePanel" testclass="CookieManager" testname="HTTP Cookie Manager" enabled="true">
+        <collectionProp name="CookieManager.cookies"/>
+        <boolProp name="CookieManager.clearEachIteration">false</boolProp>
+      </CookieManager>
+      <hashTree/>
+      <CacheManager guiclass="CacheManagerGui" testclass="CacheManager" testname="HTTP Cache Manager" enabled="true">
+        <boolProp name="clearEachIteration">false</boolProp>
+        <boolProp name="useExpires">true</boolProp>
+      </CacheManager>
+      <hashTree/>
+      <ConfigTestElement guiclass="HttpDefaultsGui" testclass="ConfigTestElement" testname="HTTP Request Defaults" enabled="true">
+        <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+          <collectionProp name="Arguments.arguments"/>
+        </elementProp>
+        <stringProp name="HTTPSampler.domain">${COSA.HOST}</stringProp>
+        <stringProp name="HTTPSampler.port">${COSA.PORT}</stringProp>
+        <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+        <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        <stringProp name="HTTPSampler.protocol">${COSA.PROTOCOL}</stringProp>
+        <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+        <stringProp name="HTTPSampler.path"></stringProp>
+        <stringProp name="HTTPSampler.concurrentPool">4</stringProp>
+      </ConfigTestElement>
+      <hashTree/>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="cosa1 - ${__machineName}" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">200</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">${COSA.v1.THREADS}</stringProp>
+        <longProp name="ThreadGroup.start_time">1382063821000</longProp>
+        <longProp name="ThreadGroup.end_time">1382063821000</longProp>
+        <boolProp name="ThreadGroup.scheduler">true</boolProp>
+        <stringProp name="ThreadGroup.duration">${PLAN.DURATION.SECOND}</stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+        <boolProp name="ThreadGroup.delayedStart">true</boolProp>
+      </ThreadGroup>
+      <hashTree>
+        <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="load properties" enabled="true">
+          <collectionProp name="Arguments.arguments">
+            <elementProp name="COSA.USER.POSTFIX" elementType="Argument">
+              <stringProp name="Argument.name">COSA.USER.POSTFIX</stringProp>
+              <stringProp name="Argument.value">${__P(COSA.USER.POSTFIX,)}</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+          </collectionProp>
+        </Arguments>
+        <hashTree/>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="OTA" enabled="true"/>
+        <hashTree>
+          <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Parameter" enabled="true">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="GEN.USERs.HOSTNAME" elementType="Argument">
+                <stringProp name="Argument.name">GEN.USERs.HOSTNAME</stringProp>
+                <stringProp name="Argument.value">jmeter</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </Arguments>
+          <hashTree/>
+          <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+            <boolProp name="LoopController.continue_forever">true</boolProp>
+            <stringProp name="LoopController.loops">1</stringProp>
+          </LoopController>
+          <hashTree>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="List" enabled="true">
+              <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.value"></stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+              <stringProp name="HTTPSampler.domain"></stringProp>
+              <stringProp name="HTTPSampler.port"></stringProp>
+              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+              <stringProp name="HTTPSampler.protocol">http</stringProp>
+              <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+              <stringProp name="HTTPSampler.path">/ota/services/upgrade/listUpdatePackages</stringProp>
+              <stringProp name="HTTPSampler.method">GET</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+              <boolProp name="HTTPSampler.monitor">false</boolProp>
+              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            </HTTPSamplerProxy>
+            <hashTree>
+              <com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor guiclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.gui.JSONPathExtractorGui" testclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor" testname="set DownloadURL" enabled="true">
+                <stringProp name="VAR">DownloadURL</stringProp>
+                <stringProp name="JSONPATH">$.packages[0].downloadUrl</stringProp>
+              </com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor>
+              <hashTree/>
+              <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="json statuscode 0" enabled="true">
+                <collectionProp name="Asserion.test_strings">
+                  <stringProp name="67791721">&quot;code&quot;:0</stringProp>
+                </collectionProp>
+                <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+                <boolProp name="Assertion.assume_success">false</boolProp>
+                <intProp name="Assertion.test_type">2</intProp>
+              </ResponseAssertion>
+              <hashTree/>
+            </hashTree>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Download" enabled="true">
+              <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.value"></stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+              <stringProp name="HTTPSampler.domain"></stringProp>
+              <stringProp name="HTTPSampler.port"></stringProp>
+              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+              <stringProp name="HTTPSampler.protocol">http</stringProp>
+              <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+              <stringProp name="HTTPSampler.path">/ota/services/upgrade/download${DownloadURL}</stringProp>
+              <stringProp name="HTTPSampler.method">GET</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+              <boolProp name="HTTPSampler.monitor">false</boolProp>
+              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            </HTTPSamplerProxy>
+            <hashTree/>
+            <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="Debug Sampler" enabled="true">
+              <boolProp name="displayJMeterProperties">false</boolProp>
+              <boolProp name="displayJMeterVariables">true</boolProp>
+              <boolProp name="displaySystemProperties">false</boolProp>
+            </DebugSampler>
+            <hashTree/>
+          </hashTree>
+          <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="false">
+            <boolProp name="LoopController.continue_forever">true</boolProp>
+            <stringProp name="LoopController.loops">1</stringProp>
+          </LoopController>
+          <hashTree>
+            <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="admin login -&gt; add users" enabled="true"/>
+            <hashTree>
+              <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="admin login" enabled="true">
+                <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+                  <collectionProp name="Arguments.arguments">
+                    <elementProp name="u" elementType="HTTPArgument">
+                      <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                      <stringProp name="Argument.name">u</stringProp>
+                      <stringProp name="Argument.value">admin</stringProp>
+                      <stringProp name="Argument.metadata">=</stringProp>
+                      <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                    </elementProp>
+                    <elementProp name="pw" elementType="HTTPArgument">
+                      <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                      <stringProp name="Argument.name">pw</stringProp>
+                      <stringProp name="Argument.value">admin</stringProp>
+                      <stringProp name="Argument.metadata">=</stringProp>
+                      <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                    </elementProp>
+                  </collectionProp>
+                </elementProp>
+                <stringProp name="HTTPSampler.domain"></stringProp>
+                <stringProp name="HTTPSampler.port"></stringProp>
+                <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                <stringProp name="HTTPSampler.protocol"></stringProp>
+                <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+                <stringProp name="HTTPSampler.path">/dologin.jsp</stringProp>
+                <stringProp name="HTTPSampler.method">POST</stringProp>
+                <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+                <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+                <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+                <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+                <boolProp name="HTTPSampler.monitor">false</boolProp>
+                <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+              </HTTPSamplerProxy>
+              <hashTree>
+                <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP header manager" enabled="true">
+                  <collectionProp name="HeaderManager.headers">
+                    <elementProp name="Content-Type" elementType="Header">
+                      <stringProp name="Header.name">Content-Type</stringProp>
+                      <stringProp name="Header.value">application/x-www-form-urlencoded</stringProp>
+                    </elementProp>
+                    <elementProp name="Accept-Language" elementType="Header">
+                      <stringProp name="Header.name">Accept-Language</stringProp>
+                      <stringProp name="Header.value">zh-TW,zh;q=0.8,en-US;q=0.6,en;q=0.4</stringProp>
+                    </elementProp>
+                    <elementProp name="Accept" elementType="Header">
+                      <stringProp name="Header.name">Accept</stringProp>
+                      <stringProp name="Header.value">application/json, text/javascript, */*; q=0.01</stringProp>
+                    </elementProp>
+                    <elementProp name="Origin" elementType="Header">
+                      <stringProp name="Header.name">Origin</stringProp>
+                      <stringProp name="Header.value">http://${COSA.HOST}</stringProp>
+                    </elementProp>
+                    <elementProp name="User-Agent" elementType="Header">
+                      <stringProp name="Header.name">User-Agent</stringProp>
+                      <stringProp name="Header.value">Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.64 Safari/537.31</stringProp>
+                    </elementProp>
+                    <elementProp name="Accept-Charset" elementType="Header">
+                      <stringProp name="Header.name">Accept-Charset</stringProp>
+                      <stringProp name="Header.value">Big5,utf-8;q=0.7,*;q=0.3</stringProp>
+                    </elementProp>
+                    <elementProp name="X-Requested-With" elementType="Header">
+                      <stringProp name="Header.name">X-Requested-With</stringProp>
+                      <stringProp name="Header.value">XMLHttpRequest</stringProp>
+                    </elementProp>
+                    <elementProp name="Referer" elementType="Header">
+                      <stringProp name="Header.name">Referer</stringProp>
+                      <stringProp name="Header.value">http://${COSA.HOST}/login.jsp</stringProp>
+                    </elementProp>
+                    <elementProp name="Accept-Encoding" elementType="Header">
+                      <stringProp name="Header.name">Accept-Encoding</stringProp>
+                      <stringProp name="Header.value">gzip,deflate,sdch</stringProp>
+                    </elementProp>
+                  </collectionProp>
+                </HeaderManager>
+                <hashTree/>
+                <UserParameters guiclass="UserParametersGui" testclass="UserParameters" testname="form body parameters" enabled="true">
+                  <collectionProp name="UserParameters.names">
+                    <stringProp name="2079517131">FORM.u</stringProp>
+                    <stringProp name="40521585">FORM.pw</stringProp>
+                  </collectionProp>
+                  <collectionProp name="UserParameters.thread_values">
+                    <collectionProp name="-977969932">
+                      <stringProp name="-1333098890">${COSA.ADMIN.NAME}</stringProp>
+                      <stringProp name="-1331245648">${COSA.ADMIN.PASS}</stringProp>
+                    </collectionProp>
+                  </collectionProp>
+                  <boolProp name="UserParameters.per_iteration">false</boolProp>
+                </UserParameters>
+                <hashTree/>
+                <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="json statuscode 200" enabled="true">
+                  <collectionProp name="Asserion.test_strings">
+                    <stringProp name="175355001">&quot;statuscode&quot;:200</stringProp>
+                  </collectionProp>
+                  <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+                  <boolProp name="Assertion.assume_success">false</boolProp>
+                  <intProp name="Assertion.test_type">2</intProp>
+                </ResponseAssertion>
+                <hashTree/>
+                <com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor guiclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.gui.JSONPathExtractorGui" testclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor" testname="set COSA.TICKET" enabled="true">
+                  <stringProp name="VAR">COSA.TICKET</stringProp>
+                  <stringProp name="JSONPATH">$.ticket</stringProp>
+                </com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor>
+                <hashTree/>
+              </hashTree>
+              <IfController guiclass="IfControllerPanel" testclass="IfController" testname="if login ok" enabled="true">
+                <stringProp name="IfController.condition">${JMeterThread.last_sample_ok}</stringProp>
+                <boolProp name="IfController.evaluateAll">false</boolProp>
+              </IfController>
+              <hashTree>
+                <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="increase cosa.people.limit if need" enabled="true"/>
+                <hashTree>
+                  <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="get prop cosa.people.limit" enabled="true">
+                    <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+                      <collectionProp name="Arguments.arguments"/>
+                    </elementProp>
+                    <stringProp name="HTTPSampler.domain"></stringProp>
+                    <stringProp name="HTTPSampler.port"></stringProp>
+                    <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                    <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                    <stringProp name="HTTPSampler.protocol"></stringProp>
+                    <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+                    <stringProp name="HTTPSampler.path">/restful/services/properties/get/cosa.people.limit</stringProp>
+                    <stringProp name="HTTPSampler.method">GET</stringProp>
+                    <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+                    <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+                    <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+                    <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+                    <boolProp name="HTTPSampler.monitor">false</boolProp>
+                    <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+                  </HTTPSamplerProxy>
+                  <hashTree>
+                    <BSFPostProcessor guiclass="TestBeanGUI" testclass="BSFPostProcessor" testname="set COSA.cosa.people.limit" enabled="true">
+                      <stringProp name="filename"></stringProp>
+                      <stringProp name="parameters"></stringProp>
+                      <stringProp name="script">eval(&apos;var ResponseString = &apos; + prev.getResponseDataAsString());
+vars.put(&quot;COSA.cosa.people.limit&quot;, ResponseString);
+</stringProp>
+                      <stringProp name="scriptLanguage">javascript</stringProp>
+                    </BSFPostProcessor>
+                    <hashTree/>
+                  </hashTree>
+                  <IfController guiclass="IfControllerPanel" testclass="IfController" testname="if limit &lt; loop" enabled="true">
+                    <stringProp name="IfController.condition">${COSA.cosa.people.limit} &lt; ${__javaScript( ${COSA.USER.IDX.LAST} - ${COSA.USER.IDX.FIRST} + 1 )}</stringProp>
+                    <boolProp name="IfController.evaluateAll">false</boolProp>
+                  </IfController>
+                  <hashTree>
+                    <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="set prop cosa.people.limit" enabled="true">
+                      <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+                      <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+                        <collectionProp name="Arguments.arguments">
+                          <elementProp name="" elementType="HTTPArgument">
+                            <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                            <stringProp name="Argument.value">{&#xd;
+	&quot;key&quot;:&quot;${JSON.key}&quot;,&#xd;
+	&quot;value&quot;:&quot;${JSON.value}&quot;&#xd;
+}</stringProp>
+                            <stringProp name="Argument.metadata">=</stringProp>
+                          </elementProp>
+                        </collectionProp>
+                      </elementProp>
+                      <stringProp name="HTTPSampler.domain"></stringProp>
+                      <stringProp name="HTTPSampler.port"></stringProp>
+                      <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                      <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                      <stringProp name="HTTPSampler.protocol"></stringProp>
+                      <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+                      <stringProp name="HTTPSampler.path">/restful/services/properties/set</stringProp>
+                      <stringProp name="HTTPSampler.method">POST</stringProp>
+                      <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+                      <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+                      <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+                      <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+                      <boolProp name="HTTPSampler.monitor">false</boolProp>
+                      <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+                    </HTTPSamplerProxy>
+                    <hashTree>
+                      <UserParameters guiclass="UserParametersGui" testclass="UserParameters" testname="json body parameters" enabled="true">
+                        <collectionProp name="UserParameters.names">
+                          <stringProp name="-1192445863">JSON.key</stringProp>
+                          <stringProp name="825824491">JSON.value</stringProp>
+                        </collectionProp>
+                        <collectionProp name="UserParameters.thread_values">
+                          <collectionProp name="1683674934">
+                            <stringProp name="-1169728176">cosa.people.limit</stringProp>
+                            <stringProp name="-2094283307">${__javaScript( ${COSA.USER.IDX.LAST} - ${COSA.USER.IDX.FIRST} + 1 )}</stringProp>
+                          </collectionProp>
+                        </collectionProp>
+                        <boolProp name="UserParameters.per_iteration">false</boolProp>
+                      </UserParameters>
+                      <hashTree/>
+                      <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="content-type json" enabled="true">
+                        <collectionProp name="HeaderManager.headers">
+                          <elementProp name="Content-Type" elementType="Header">
+                            <stringProp name="Header.name">Content-Type</stringProp>
+                            <stringProp name="Header.value">application/json</stringProp>
+                          </elementProp>
+                        </collectionProp>
+                      </HeaderManager>
+                      <hashTree/>
+                      <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="json statuscode 200" enabled="true">
+                        <collectionProp name="Asserion.test_strings">
+                          <stringProp name="175355001">&quot;statuscode&quot;:200</stringProp>
+                        </collectionProp>
+                        <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+                        <boolProp name="Assertion.assume_success">false</boolProp>
+                        <intProp name="Assertion.test_type">2</intProp>
+                      </ResponseAssertion>
+                      <hashTree/>
+                    </hashTree>
+                  </hashTree>
+                </hashTree>
+                <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+                  <boolProp name="LoopController.continue_forever">true</boolProp>
+                  <stringProp name="LoopController.loops">1</stringProp>
+                </LoopController>
+                <hashTree>
+                  <CounterConfig guiclass="CounterConfigGui" testclass="CounterConfig" testname="counter" enabled="true">
+                    <stringProp name="CounterConfig.start">${COSA.USER.IDX.FIRST}</stringProp>
+                    <stringProp name="CounterConfig.end"></stringProp>
+                    <stringProp name="CounterConfig.incr">1</stringProp>
+                    <stringProp name="CounterConfig.name">N</stringProp>
+                    <stringProp name="CounterConfig.format"></stringProp>
+                    <boolProp name="CounterConfig.per_user">false</boolProp>
+                  </CounterConfig>
+                  <hashTree/>
+                  <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="re-login if ticket timeout" enabled="false"/>
+                  <hashTree>
+                    <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="verify ticket" enabled="true">
+                      <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+                        <collectionProp name="Arguments.arguments"/>
+                      </elementProp>
+                      <stringProp name="HTTPSampler.domain"></stringProp>
+                      <stringProp name="HTTPSampler.port"></stringProp>
+                      <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                      <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                      <stringProp name="HTTPSampler.protocol"></stringProp>
+                      <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+                      <stringProp name="HTTPSampler.path">/restful/services/auth/verify?ticket=${QUERY.ticket}</stringProp>
+                      <stringProp name="HTTPSampler.method">GET</stringProp>
+                      <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+                      <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+                      <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+                      <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+                      <boolProp name="HTTPSampler.monitor">false</boolProp>
+                      <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+                      <stringProp name="TestPlan.comments">200 valid | 401 invalid</stringProp>
+                    </HTTPSamplerProxy>
+                    <hashTree>
+                      <UserParameters guiclass="UserParametersGui" testclass="UserParameters" testname="query string parameters" enabled="true">
+                        <collectionProp name="UserParameters.names">
+                          <stringProp name="-1620352238">QUERY.ticket</stringProp>
+                        </collectionProp>
+                        <collectionProp name="UserParameters.thread_values">
+                          <collectionProp name="928949649">
+                            <stringProp name="-1312007404">${COSA.TICKET}</stringProp>
+                          </collectionProp>
+                        </collectionProp>
+                        <boolProp name="UserParameters.per_iteration">false</boolProp>
+                      </UserParameters>
+                      <hashTree/>
+                      <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="json statuscode 200" enabled="true">
+                        <collectionProp name="Asserion.test_strings">
+                          <stringProp name="175355001">&quot;statuscode&quot;:200</stringProp>
+                        </collectionProp>
+                        <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+                        <boolProp name="Assertion.assume_success">false</boolProp>
+                        <intProp name="Assertion.test_type">2</intProp>
+                      </ResponseAssertion>
+                      <hashTree/>
+                    </hashTree>
+                    <IfController guiclass="IfControllerPanel" testclass="IfController" testname="if invalid ticket" enabled="true">
+                      <stringProp name="IfController.condition">! ${JMeterThread.last_sample_ok}</stringProp>
+                      <boolProp name="IfController.evaluateAll">false</boolProp>
+                    </IfController>
+                    <hashTree>
+                      <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="admin re-login" enabled="true">
+                        <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+                          <collectionProp name="Arguments.arguments">
+                            <elementProp name="u" elementType="HTTPArgument">
+                              <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                              <stringProp name="Argument.name">u</stringProp>
+                              <stringProp name="Argument.value">${FORM.u}</stringProp>
+                              <stringProp name="Argument.metadata">=</stringProp>
+                              <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                            </elementProp>
+                            <elementProp name="pw" elementType="HTTPArgument">
+                              <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                              <stringProp name="Argument.name">pw</stringProp>
+                              <stringProp name="Argument.value">${FORM.pw}</stringProp>
+                              <stringProp name="Argument.metadata">=</stringProp>
+                              <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                            </elementProp>
+                          </collectionProp>
+                        </elementProp>
+                        <stringProp name="HTTPSampler.domain"></stringProp>
+                        <stringProp name="HTTPSampler.port"></stringProp>
+                        <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                        <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                        <stringProp name="HTTPSampler.protocol"></stringProp>
+                        <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+                        <stringProp name="HTTPSampler.path">/dologin.jsp</stringProp>
+                        <stringProp name="HTTPSampler.method">POST</stringProp>
+                        <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+                        <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+                        <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+                        <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+                        <boolProp name="HTTPSampler.monitor">false</boolProp>
+                        <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+                      </HTTPSamplerProxy>
+                      <hashTree>
+                        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP header manager" enabled="true">
+                          <collectionProp name="HeaderManager.headers">
+                            <elementProp name="Content-Type" elementType="Header">
+                              <stringProp name="Header.name">Content-Type</stringProp>
+                              <stringProp name="Header.value">application/x-www-form-urlencoded</stringProp>
+                            </elementProp>
+                            <elementProp name="Accept-Language" elementType="Header">
+                              <stringProp name="Header.name">Accept-Language</stringProp>
+                              <stringProp name="Header.value">zh-TW,zh;q=0.8,en-US;q=0.6,en;q=0.4</stringProp>
+                            </elementProp>
+                            <elementProp name="Accept" elementType="Header">
+                              <stringProp name="Header.name">Accept</stringProp>
+                              <stringProp name="Header.value">application/json, text/javascript, */*; q=0.01</stringProp>
+                            </elementProp>
+                            <elementProp name="Origin" elementType="Header">
+                              <stringProp name="Header.name">Origin</stringProp>
+                              <stringProp name="Header.value">http://${COSA.HOST}</stringProp>
+                            </elementProp>
+                            <elementProp name="User-Agent" elementType="Header">
+                              <stringProp name="Header.name">User-Agent</stringProp>
+                              <stringProp name="Header.value">Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.64 Safari/537.31</stringProp>
+                            </elementProp>
+                            <elementProp name="Accept-Charset" elementType="Header">
+                              <stringProp name="Header.name">Accept-Charset</stringProp>
+                              <stringProp name="Header.value">Big5,utf-8;q=0.7,*;q=0.3</stringProp>
+                            </elementProp>
+                            <elementProp name="X-Requested-With" elementType="Header">
+                              <stringProp name="Header.name">X-Requested-With</stringProp>
+                              <stringProp name="Header.value">XMLHttpRequest</stringProp>
+                            </elementProp>
+                            <elementProp name="Referer" elementType="Header">
+                              <stringProp name="Header.name">Referer</stringProp>
+                              <stringProp name="Header.value">http://${COSA.HOST}/login.jsp</stringProp>
+                            </elementProp>
+                            <elementProp name="Accept-Encoding" elementType="Header">
+                              <stringProp name="Header.name">Accept-Encoding</stringProp>
+                              <stringProp name="Header.value">gzip,deflate,sdch</stringProp>
+                            </elementProp>
+                          </collectionProp>
+                        </HeaderManager>
+                        <hashTree/>
+                        <UserParameters guiclass="UserParametersGui" testclass="UserParameters" testname="form body parameters" enabled="true">
+                          <collectionProp name="UserParameters.names">
+                            <stringProp name="2079517131">FORM.u</stringProp>
+                            <stringProp name="40521585">FORM.pw</stringProp>
+                          </collectionProp>
+                          <collectionProp name="UserParameters.thread_values">
+                            <collectionProp name="-977969932">
+                              <stringProp name="-1333098890">${COSA.ADMIN.NAME}</stringProp>
+                              <stringProp name="-1331245648">${COSA.ADMIN.PASS}</stringProp>
+                            </collectionProp>
+                          </collectionProp>
+                          <boolProp name="UserParameters.per_iteration">false</boolProp>
+                        </UserParameters>
+                        <hashTree/>
+                        <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="json statuscode 200" enabled="true">
+                          <collectionProp name="Asserion.test_strings">
+                            <stringProp name="175355001">&quot;statuscode&quot;:200</stringProp>
+                          </collectionProp>
+                          <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+                          <boolProp name="Assertion.assume_success">false</boolProp>
+                          <intProp name="Assertion.test_type">2</intProp>
+                        </ResponseAssertion>
+                        <hashTree/>
+                        <com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor guiclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.gui.JSONPathExtractorGui" testclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor" testname="set COSA.TICKET" enabled="true">
+                          <stringProp name="VAR">COSA.TICKET</stringProp>
+                          <stringProp name="JSONPATH">$.ticket</stringProp>
+                        </com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor>
+                        <hashTree/>
+                      </hashTree>
+                    </hashTree>
+                  </hashTree>
+                  <IfController guiclass="IfControllerPanel" testclass="IfController" testname="if ticket ok" enabled="true">
+                    <stringProp name="IfController.condition">${JMeterThread.last_sample_ok}</stringProp>
+                    <boolProp name="IfController.evaluateAll">false</boolProp>
+                  </IfController>
+                  <hashTree>
+                    <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="add share folder user Iris" enabled="true">
+                      <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+                      <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+                        <collectionProp name="Arguments.arguments">
+                          <elementProp name="" elementType="HTTPArgument">
+                            <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                            <stringProp name="Argument.value">{&#xd;
+	&quot;userName&quot;:&quot;${JSON.userName}&quot;,&#xd;
+	&quot;firstName&quot;:&quot;${JSON.firstName}&quot;,&#xd;
+	&quot;lastName&quot;:&quot;${JSON.lastName}&quot;,&#xd;
+	&quot;email&quot;:&quot;${JSON.email}&quot;,&#xd;
+	&quot;password&quot;:&quot;${JSON.password}&quot;,&#xd;
+	&quot;quota&quot;:${JSON.quota},&#xd;
+	&quot;groups&quot;:[${JSON.groups}],&#xd;
+	&quot;localization&quot;:&quot;${JSON.localization}&quot;,&#xd;
+	&quot;shareDpxStatus&quot;:${JSON.shareDpxStatus},&#xd;
+	&quot;sharePrivateStatus&quot;:${JSON.sharePrivateStatus},&#xd;
+	&quot;fileTimeExpired&quot;:&quot;${JSON.fileTimeExpired}&quot;,&#xd;
+	&quot;fileUsedExpired&quot;:&quot;${JSON.fileUsedExpired}&quot;&#xd;
+}</stringProp>
+                            <stringProp name="Argument.metadata">=</stringProp>
+                          </elementProp>
+                        </collectionProp>
+                      </elementProp>
+                      <stringProp name="HTTPSampler.domain"></stringProp>
+                      <stringProp name="HTTPSampler.port"></stringProp>
+                      <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                      <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                      <stringProp name="HTTPSampler.protocol"></stringProp>
+                      <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+                      <stringProp name="HTTPSampler.path">/restful/services/people/create?alf_ticket=${QUERY.ticket}</stringProp>
+                      <stringProp name="HTTPSampler.method">POST</stringProp>
+                      <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
+                      <boolProp name="HTTPSampler.auto_redirects">true</boolProp>
+                      <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+                      <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+                      <boolProp name="HTTPSampler.monitor">false</boolProp>
+                      <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+                    </HTTPSamplerProxy>
+                    <hashTree>
+                      <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP header manager" enabled="true">
+                        <collectionProp name="HeaderManager.headers">
+                          <elementProp name="Content-Type" elementType="Header">
+                            <stringProp name="Header.name">Content-Type</stringProp>
+                            <stringProp name="Header.value">application/json</stringProp>
+                          </elementProp>
+                          <elementProp name="Accept-Language" elementType="Header">
+                            <stringProp name="Header.name">Accept-Language</stringProp>
+                            <stringProp name="Header.value">zh-TW,zh;q=0.8,en-US;q=0.6,en;q=0.4</stringProp>
+                          </elementProp>
+                          <elementProp name="Accept" elementType="Header">
+                            <stringProp name="Header.name">Accept</stringProp>
+                            <stringProp name="Header.value">application/json, text/javascript, */*; q=0.01</stringProp>
+                          </elementProp>
+                          <elementProp name="Origin" elementType="Header">
+                            <stringProp name="Header.name">Origin</stringProp>
+                            <stringProp name="Header.value">http://${COSA.HOST}</stringProp>
+                          </elementProp>
+                          <elementProp name="User-Agent" elementType="Header">
+                            <stringProp name="Header.name">User-Agent</stringProp>
+                            <stringProp name="Header.value">Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.64 Safari/537.31</stringProp>
+                          </elementProp>
+                          <elementProp name="Accept-Charset" elementType="Header">
+                            <stringProp name="Header.name">Accept-Charset</stringProp>
+                            <stringProp name="Header.value">Big5,utf-8;q=0.7,*;q=0.3</stringProp>
+                          </elementProp>
+                          <elementProp name="X-Requested-With" elementType="Header">
+                            <stringProp name="Header.name">X-Requested-With</stringProp>
+                            <stringProp name="Header.value">XMLHttpRequest</stringProp>
+                          </elementProp>
+                          <elementProp name="Referer" elementType="Header">
+                            <stringProp name="Header.name">Referer</stringProp>
+                            <stringProp name="Header.value">http://${COSA.HOST}/manage/managerusers.jsp</stringProp>
+                          </elementProp>
+                          <elementProp name="Accept-Encoding" elementType="Header">
+                            <stringProp name="Header.name">Accept-Encoding</stringProp>
+                            <stringProp name="Header.value">gzip,deflate,sdch</stringProp>
+                          </elementProp>
+                        </collectionProp>
+                      </HeaderManager>
+                      <hashTree/>
+                      <UserParameters guiclass="UserParametersGui" testclass="UserParameters" testname="query string parameters" enabled="true">
+                        <collectionProp name="UserParameters.names">
+                          <stringProp name="-1620352238">QUERY.ticket</stringProp>
+                        </collectionProp>
+                        <collectionProp name="UserParameters.thread_values">
+                          <collectionProp name="928949649">
+                            <stringProp name="-1312007404">${COSA.TICKET}</stringProp>
+                          </collectionProp>
+                        </collectionProp>
+                        <boolProp name="UserParameters.per_iteration">false</boolProp>
+                      </UserParameters>
+                      <hashTree/>
+                      <UserParameters guiclass="UserParametersGui" testclass="UserParameters" testname="json body parameters" enabled="true">
+                        <collectionProp name="UserParameters.names">
+                          <stringProp name="1708330812">JSON.userName</stringProp>
+                          <stringProp name="1228218325">JSON.firstName</stringProp>
+                          <stringProp name="515397767">JSON.lastName</stringProp>
+                          <stringProp name="810471190">JSON.email</stringProp>
+                          <stringProp name="-1102983967">JSON.password</stringProp>
+                          <stringProp name="821805554">JSON.quota</stringProp>
+                          <stringProp name="-582892134">JSON.groups</stringProp>
+                          <stringProp name="-1428994593">JSON.localization</stringProp>
+                          <stringProp name="480477477">JSON.shareDpxStatus</stringProp>
+                          <stringProp name="2055981180">JSON.sharePrivateStatus</stringProp>
+                          <stringProp name="-1055507594">JSON.fileTimeExpired</stringProp>
+                          <stringProp name="-690703226">JSON.fileUsedExpired</stringProp>
+                        </collectionProp>
+                        <collectionProp name="UserParameters.thread_values">
+                          <collectionProp name="-1317937805">
+                            <stringProp name="3240979">iris</stringProp>
+                            <stringProp name="3240979">iris</stringProp>
+                            <stringProp name="-1156489889">jmeter</stringProp>
+                            <stringProp name="637178336">mail@jmeter.cosa</stringProp>
+                            <stringProp name="3240979">iris</stringProp>
+                            <stringProp name="1731998115">21474836480</stringProp>
+                            <stringProp name="0"></stringProp>
+                            <stringProp name="115813762">zh-TW</stringProp>
+                            <stringProp name="97196323">false</stringProp>
+                            <stringProp name="3569038">true</stringProp>
+                            <stringProp name="1755">72</stringProp>
+                            <stringProp name="48625">100</stringProp>
+                          </collectionProp>
+                        </collectionProp>
+                        <boolProp name="UserParameters.per_iteration">false</boolProp>
+                      </UserParameters>
+                      <hashTree/>
+                      <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="json statuscode 200" enabled="true">
+                        <collectionProp name="Asserion.test_strings">
+                          <stringProp name="175355001">&quot;statuscode&quot;:200</stringProp>
+                        </collectionProp>
+                        <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+                        <boolProp name="Assertion.assume_success">false</boolProp>
+                        <intProp name="Assertion.test_type">2</intProp>
+                      </ResponseAssertion>
+                      <hashTree/>
+                    </hashTree>
+                  </hashTree>
+                </hashTree>
+              </hashTree>
+            </hashTree>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="dologin" enabled="true">
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="u" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.name">u</stringProp>
+                    <stringProp name="Argument.value">iris</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  </elementProp>
+                  <elementProp name="pw" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.name">pw</stringProp>
+                    <stringProp name="Argument.value">iris</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+              <stringProp name="HTTPSampler.domain"></stringProp>
+              <stringProp name="HTTPSampler.port"></stringProp>
+              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+              <stringProp name="HTTPSampler.protocol"></stringProp>
+              <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+              <stringProp name="HTTPSampler.path">/dologin.jsp</stringProp>
+              <stringProp name="HTTPSampler.method">POST</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+              <boolProp name="HTTPSampler.monitor">false</boolProp>
+              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            </HTTPSamplerProxy>
+            <hashTree>
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP header manager" enabled="true">
+                <collectionProp name="HeaderManager.headers">
+                  <elementProp name="Content-Type" elementType="Header">
+                    <stringProp name="Header.name">Content-Type</stringProp>
+                    <stringProp name="Header.value">application/x-www-form-urlencoded</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept-Language" elementType="Header">
+                    <stringProp name="Header.name">Accept-Language</stringProp>
+                    <stringProp name="Header.value">zh-TW,zh;q=0.8,en-US;q=0.6,en;q=0.4</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept" elementType="Header">
+                    <stringProp name="Header.name">Accept</stringProp>
+                    <stringProp name="Header.value">application/json, text/javascript, */*; q=0.01</stringProp>
+                  </elementProp>
+                  <elementProp name="Origin" elementType="Header">
+                    <stringProp name="Header.name">Origin</stringProp>
+                    <stringProp name="Header.value">${COSA.PROTOCOL}://${COSA.HOST}:${COSA.PORT}</stringProp>
+                  </elementProp>
+                  <elementProp name="User-Agent" elementType="Header">
+                    <stringProp name="Header.name">User-Agent</stringProp>
+                    <stringProp name="Header.value">Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.64 Safari/537.31</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept-Charset" elementType="Header">
+                    <stringProp name="Header.name">Accept-Charset</stringProp>
+                    <stringProp name="Header.value">Big5,utf-8;q=0.7,*;q=0.3</stringProp>
+                  </elementProp>
+                  <elementProp name="X-Requested-With" elementType="Header">
+                    <stringProp name="Header.name">X-Requested-With</stringProp>
+                    <stringProp name="Header.value">XMLHttpRequest</stringProp>
+                  </elementProp>
+                  <elementProp name="Referer" elementType="Header">
+                    <stringProp name="Header.name">Referer</stringProp>
+                    <stringProp name="Header.value">${COSA.PROTOCOL}://${COSA.HOST}:${COSA.PORT}/login.jsp</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept-Encoding" elementType="Header">
+                    <stringProp name="Header.name">Accept-Encoding</stringProp>
+                    <stringProp name="Header.value">gzip,deflate,sdch</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </HeaderManager>
+              <hashTree/>
+              <UserParameters guiclass="UserParametersGui" testclass="UserParameters" testname="set COSA.USERNAME &amp; COSA.PASSWORD" enabled="false">
+                <collectionProp name="UserParameters.names">
+                  <stringProp name="-603728758">COSA.USERNAME</stringProp>
+                  <stringProp name="878970447">COSA.PASSWORD</stringProp>
+                </collectionProp>
+                <collectionProp name="UserParameters.thread_values">
+                  <collectionProp name="2141508897">
+                    <stringProp name="-877169473">tester</stringProp>
+                    <stringProp name="-877169473">tester</stringProp>
+                  </collectionProp>
+                </collectionProp>
+                <boolProp name="UserParameters.per_iteration">false</boolProp>
+              </UserParameters>
+              <hashTree/>
+              <UserParameters guiclass="UserParametersGui" testclass="UserParameters" testname="set COSA.USERNAME &amp; COSA.PASSWORD" enabled="false">
+                <collectionProp name="UserParameters.names">
+                  <stringProp name="-603728758">COSA.USERNAME</stringProp>
+                  <stringProp name="878970447">COSA.PASSWORD</stringProp>
+                </collectionProp>
+                <collectionProp name="UserParameters.thread_values">
+                  <collectionProp name="1415462584">
+                    <stringProp name="1068854263">webuser${__threadNum}</stringProp>
+                    <stringProp name="2986048">aaaa</stringProp>
+                  </collectionProp>
+                </collectionProp>
+                <boolProp name="UserParameters.per_iteration">false</boolProp>
+              </UserParameters>
+              <hashTree/>
+              <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="json statuscode 200" enabled="true">
+                <collectionProp name="Asserion.test_strings">
+                  <stringProp name="175355001">&quot;statuscode&quot;:200</stringProp>
+                </collectionProp>
+                <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+                <boolProp name="Assertion.assume_success">false</boolProp>
+                <intProp name="Assertion.test_type">2</intProp>
+              </ResponseAssertion>
+              <hashTree/>
+              <com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor guiclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.gui.JSONPathExtractorGui" testclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor" testname="set COSA.TICKET" enabled="true">
+                <stringProp name="VAR">COSA.TICKET</stringProp>
+                <stringProp name="JSONPATH">$.ticket</stringProp>
+              </com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor>
+              <hashTree/>
+              <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="load shared object info" enabled="false">
+                <stringProp name="filename"></stringProp>
+                <stringProp name="parameters"></stringProp>
+                <boolProp name="resetInterpreter">false</boolProp>
+                <stringProp name="script">import java.io.*;
+
+String infoString = &quot;&quot;;
+FileReader file = null;
+
+    file = new FileReader(&quot;../../tmp/csv/&quot; + vars.get(&quot;COSA.USERNAME&quot;) + &quot;.csv&quot;);
+    BufferedReader reader = new BufferedReader(file);
+
+    int x = java.lang.Integer.parseInt(vars.get(&quot;MAGIC.NUM.SHARE.OBJS&quot;)) + 1;
+    for (int i=1; i&lt;x; i++) {
+        infoString = reader.readLine();
+        String[] infoArray = infoString.split(&quot;,&quot;);
+
+        vars.put(&quot;COSA.SHARED_OBJUID&quot; + i,infoArray[0]);
+        vars.put(&quot;COSA.SHARED_OBJNAME&quot; + i,infoArray[1]);
+    }
+    file.close();
+    vars.put(&quot;COSA.SHARED_OBJPTR&quot;,&quot;1&quot;);</stringProp>
+              </BeanShellPreProcessor>
+              <hashTree/>
+            </hashTree>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Get Param (ChunkUpload)" enabled="true">
+              <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.value"></stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+              <stringProp name="HTTPSampler.domain"></stringProp>
+              <stringProp name="HTTPSampler.port"></stringProp>
+              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+              <stringProp name="HTTPSampler.protocol">https</stringProp>
+              <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+              <stringProp name="HTTPSampler.path">/restful/services/obj_mgt/get_param</stringProp>
+              <stringProp name="HTTPSampler.method">GET</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+              <boolProp name="HTTPSampler.monitor">false</boolProp>
+              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            </HTTPSamplerProxy>
+            <hashTree>
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP 標頭管理員" enabled="true">
+                <collectionProp name="HeaderManager.headers">
+                  <elementProp name="" elementType="Header">
+                    <stringProp name="Header.name">Authorization</stringProp>
+                    <stringProp name="Header.value">${COSA.TICKET}</stringProp>
+                  </elementProp>
+                  <elementProp name="" elementType="Header">
+                    <stringProp name="Header.name">content-type</stringProp>
+                    <stringProp name="Header.value">application/json</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </HeaderManager>
+              <hashTree/>
+              <BSFPostProcessor guiclass="TestBeanGUI" testclass="BSFPostProcessor" testname="BSF PostProcessor" enabled="true">
+                <stringProp name="scriptLanguage">JavaScript</stringProp>
+                <stringProp name="parameters"></stringProp>
+                <stringProp name="filename"></stringProp>
+                <stringProp name="script">eval(&apos;var SearchResponse = &apos; + prev.getResponseDataAsString());
+if (SearchResponse.statuscode == &quot;0&quot;) {
+	vars.put(&quot;THRESHOLD.LARGE.FILE.SIZE&quot;, SearchResponse.chunked_upload_info.threshold_large_file_size);
+	vars.put(&quot;CHUNKED.UPLOAD.TASK.LIFETIME&quot;, SearchResponse.chunked_upload_info.chunked_upload_task_lifetime);
+	vars.put(&quot;MAX.CHUNKED.FILE.SIZE&quot;, SearchResponse.chunked_upload_info.max_chunked_file_size);
+	vars.put(&quot;MAX.FILE.SIZE&quot;, SearchResponse.chunked_upload_info.max_file_size);
+	vars.put(&quot;SCHEDULE.CHUNK.CLEANER&quot;, SearchResponse.chunked_upload_info.schedule_chunk_cleaner);
+	vars.put(&quot;MAX.TEMP.STORAGE.USAGE&quot;, SearchResponse.chunked_upload_info.max_temp_storage_usage);
+	vars.put(&quot;MAX.UPLOAD.CHUNK.NUMBER&quot;, SearchResponse.chunked_upload_info.max_uploaded_chunk_number);
+	vars.put(&quot;DEFAULT.NUM.PER.PAGE&quot;, SearchResponse.chunked_upload_info.default_num_per_page);
+}
+else {
+	ctx.getThread().stop();
+	//ctx.getThreadGroup().startNextLoop();
+}ˇ</stringProp>
+              </BSFPostProcessor>
+              <hashTree/>
+            </hashTree>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Set Param (ChunkUpload)" enabled="true">
+              <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.value">{&quot;threshold_large_file_size&quot;:&quot;5242880&quot;,&quot;max_file_size&quot;:&quot;9223372036854774000&quot;,&quot;schedule_chunk_cleaner&quot;:&quot;111111111111111111111111&quot;,&quot;max_uploaded_chunk_number&quot;:&quot;1024&quot;,&quot;default_num_per_page&quot;:&quot;1000&quot;,&quot;chunked_upload_task_lifetime&quot;:&quot;150&quot;}</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+              <stringProp name="HTTPSampler.domain"></stringProp>
+              <stringProp name="HTTPSampler.port"></stringProp>
+              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+              <stringProp name="HTTPSampler.protocol">https</stringProp>
+              <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+              <stringProp name="HTTPSampler.path">/restful/services/obj_mgt/set_param</stringProp>
+              <stringProp name="HTTPSampler.method">POST</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+              <boolProp name="HTTPSampler.monitor">false</boolProp>
+              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            </HTTPSamplerProxy>
+            <hashTree>
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP 標頭管理員" enabled="true">
+                <collectionProp name="HeaderManager.headers">
+                  <elementProp name="" elementType="Header">
+                    <stringProp name="Header.name">Authorization</stringProp>
+                    <stringProp name="Header.value">${COSA.TICKET}</stringProp>
+                  </elementProp>
+                  <elementProp name="" elementType="Header">
+                    <stringProp name="Header.name">content-type</stringProp>
+                    <stringProp name="Header.value">application/json</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </HeaderManager>
+              <hashTree/>
+              <BSFPostProcessor guiclass="TestBeanGUI" testclass="BSFPostProcessor" testname="BSF PostProcessor" enabled="true">
+                <stringProp name="scriptLanguage">JavaScript</stringProp>
+                <stringProp name="parameters"></stringProp>
+                <stringProp name="filename"></stringProp>
+                <stringProp name="script">eval(&apos;var SearchResponse = &apos; + prev.getResponseDataAsString());
+if (SearchResponse.statuscode == &quot;0&quot;) {
+	vars.put(&quot;THRESHOLD.LARGE.FILE.SIZE&quot;, SearchResponse.chunked_upload_info.threshold_large_file_size);
+	vars.put(&quot;CHUNKED.UPLOAD.TASK.LIFETIME&quot;, SearchResponse.chunked_upload_info.chunked_upload_task_lifetime);
+	vars.put(&quot;MAX.CHUNKED.FILE.SIZE&quot;, SearchResponse.chunked_upload_info.max_chunked_file_size);
+	vars.put(&quot;MAX.FILE.SIZE&quot;, SearchResponse.chunked_upload_info.max_file_size);
+	vars.put(&quot;SCHEDULE.CHUNK.CLEANER&quot;, SearchResponse.chunked_upload_info.schedule_chunk_cleaner);
+	vars.put(&quot;MAX.TEMP.STORAGE.USAGE&quot;, SearchResponse.chunked_upload_info.max_temp_storage_usage);
+	vars.put(&quot;MAX.UPLOAD.CHUNK.NUMBER&quot;, SearchResponse.chunked_upload_info.max_uploaded_chunk_number);
+	vars.put(&quot;DEFAULT.NUM.PER.PAGE&quot;, SearchResponse.chunked_upload_info.default_num_per_page);
+}
+else {
+	ctx.getThread().stop();
+	//ctx.getThreadGroup().startNextLoop();
+}ˇ</stringProp>
+              </BSFPostProcessor>
+              <hashTree/>
+            </hashTree>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Init (ChunkUpload)" enabled="true">
+              <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.value">{&quot;full_size&quot;:2097152000,&quot;eigenvalue&quot;:&quot;sss&quot;}</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+              <stringProp name="HTTPSampler.domain"></stringProp>
+              <stringProp name="HTTPSampler.port"></stringProp>
+              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+              <stringProp name="HTTPSampler.protocol">https</stringProp>
+              <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+              <stringProp name="HTTPSampler.path">/restful/services/obj_ops/initiate_chunked_upload</stringProp>
+              <stringProp name="HTTPSampler.method">POST</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+              <boolProp name="HTTPSampler.monitor">false</boolProp>
+              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            </HTTPSamplerProxy>
+            <hashTree>
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP 標頭管理員" enabled="true">
+                <collectionProp name="HeaderManager.headers">
+                  <elementProp name="" elementType="Header">
+                    <stringProp name="Header.name">Authorization</stringProp>
+                    <stringProp name="Header.value">${COSA.TICKET}</stringProp>
+                  </elementProp>
+                  <elementProp name="" elementType="Header">
+                    <stringProp name="Header.name">content-type</stringProp>
+                    <stringProp name="Header.value">application/json</stringProp>
+                  </elementProp>
+                  <elementProp name="" elementType="Header">
+                    <stringProp name="Header.name">X-COSA-Full-Path</stringProp>
+                    <stringProp name="Header.value">/test.txt</stringProp>
+                  </elementProp>
+                  <elementProp name="" elementType="Header">
+                    <stringProp name="Header.name">X-COSA-Path-Encoding</stringProp>
+                    <stringProp name="Header.value">ISO-8859-1</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </HeaderManager>
+              <hashTree/>
+              <BSFPostProcessor guiclass="TestBeanGUI" testclass="BSFPostProcessor" testname="BSF PostProcessor" enabled="true">
+                <stringProp name="scriptLanguage">javascript</stringProp>
+                <stringProp name="parameters"></stringProp>
+                <stringProp name="filename"></stringProp>
+                <stringProp name="script">eval(&apos;var SearchResponse = &apos; + prev.getResponseDataAsString());
+if (SearchResponse.statuscode == &quot;0&quot;) {
+	vars.put(&quot;CHUNK.INIT.CUID&quot;, SearchResponse.cu_id);
+
+}
+else {
+	ctx.getThread().stop();
+	//ctx.getThreadGroup().startNextLoop();
+}ˇ</stringProp>
+              </BSFPostProcessor>
+              <hashTree/>
+            </hashTree>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Chunked upload - 1(ChunkUpload)" enabled="true">
+              <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.value"></stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+              <stringProp name="HTTPSampler.domain"></stringProp>
+              <stringProp name="HTTPSampler.port"></stringProp>
+              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+              <stringProp name="HTTPSampler.protocol">https</stringProp>
+              <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+              <stringProp name="HTTPSampler.path">/restful/services/obj_ops/chunked_upload?offset=0&amp;cu_id=${CHUNK.INIT.CUID}</stringProp>
+              <stringProp name="HTTPSampler.method">POST</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.DO_MULTIPART_POST">true</boolProp>
+              <elementProp name="HTTPsampler.Files" elementType="HTTPFileArgs">
+                <collectionProp name="HTTPFileArgs.files">
+                  <elementProp name="/root/200MB-1" elementType="HTTPFileArg">
+                    <stringProp name="File.path">/root/200MB-1</stringProp>
+                    <stringProp name="File.paramname">001</stringProp>
+                    <stringProp name="File.mimetype"></stringProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+              <boolProp name="HTTPSampler.monitor">false</boolProp>
+              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            </HTTPSamplerProxy>
+            <hashTree>
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP 標頭管理員" enabled="true">
+                <collectionProp name="HeaderManager.headers">
+                  <elementProp name="" elementType="Header">
+                    <stringProp name="Header.name">Authorization</stringProp>
+                    <stringProp name="Header.value">${COSA.TICKET}</stringProp>
+                  </elementProp>
+                  <elementProp name="" elementType="Header">
+                    <stringProp name="Header.name">content-type</stringProp>
+                    <stringProp name="Header.value">application/octet-stream </stringProp>
+                  </elementProp>
+                </collectionProp>
+              </HeaderManager>
+              <hashTree/>
+              <BSFPostProcessor guiclass="TestBeanGUI" testclass="BSFPostProcessor" testname="BSF PostProcessor" enabled="true">
+                <stringProp name="scriptLanguage">javascript</stringProp>
+                <stringProp name="parameters"></stringProp>
+                <stringProp name="filename"></stringProp>
+                <stringProp name="script">eval(&apos;var SearchResponse = &apos; + prev.getResponseDataAsString());
+if (SearchResponse.statuscode == &quot;0&quot;) {
+	vars.put(&quot;CHUNK.UPLOAD.CID1&quot;, SearchResponse.c_id);
+
+}
+else {
+	ctx.getThread().stop();
+	//ctx.getThreadGroup().startNextLoop();
+}ˇ</stringProp>
+              </BSFPostProcessor>
+              <hashTree/>
+            </hashTree>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Chunked upload - 2(ChunkUpload)" enabled="true">
+              <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.value"></stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+              <stringProp name="HTTPSampler.domain"></stringProp>
+              <stringProp name="HTTPSampler.port"></stringProp>
+              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+              <stringProp name="HTTPSampler.protocol">https</stringProp>
+              <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+              <stringProp name="HTTPSampler.path">/restful/services/obj_ops/chunked_upload?offset=0&amp;cu_id=${CHUNK.INIT.CUID}</stringProp>
+              <stringProp name="HTTPSampler.method">POST</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.DO_MULTIPART_POST">true</boolProp>
+              <elementProp name="HTTPsampler.Files" elementType="HTTPFileArgs">
+                <collectionProp name="HTTPFileArgs.files">
+                  <elementProp name="/root/200MB-2" elementType="HTTPFileArg">
+                    <stringProp name="File.path">/root/200MB-2</stringProp>
+                    <stringProp name="File.paramname">002</stringProp>
+                    <stringProp name="File.mimetype"></stringProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+              <boolProp name="HTTPSampler.monitor">false</boolProp>
+              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            </HTTPSamplerProxy>
+            <hashTree>
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP 標頭管理員" enabled="true">
+                <collectionProp name="HeaderManager.headers">
+                  <elementProp name="" elementType="Header">
+                    <stringProp name="Header.name">Authorization</stringProp>
+                    <stringProp name="Header.value">${COSA.TICKET}</stringProp>
+                  </elementProp>
+                  <elementProp name="" elementType="Header">
+                    <stringProp name="Header.name">content-type</stringProp>
+                    <stringProp name="Header.value">application/octet-stream </stringProp>
+                  </elementProp>
+                </collectionProp>
+              </HeaderManager>
+              <hashTree/>
+              <BSFPostProcessor guiclass="TestBeanGUI" testclass="BSFPostProcessor" testname="BSF PostProcessor" enabled="true">
+                <stringProp name="scriptLanguage">javascript</stringProp>
+                <stringProp name="parameters"></stringProp>
+                <stringProp name="filename"></stringProp>
+                <stringProp name="script">eval(&apos;var SearchResponse = &apos; + prev.getResponseDataAsString());
+if (SearchResponse.statuscode == &quot;0&quot;) {
+	vars.put(&quot;CHUNK.UPLOAD.CID2&quot;, SearchResponse.c_id);
+
+}
+else {
+	ctx.getThread().stop();
+	//ctx.getThreadGroup().startNextLoop();
+}ˇ</stringProp>
+              </BSFPostProcessor>
+              <hashTree/>
+            </hashTree>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Chunked upload - 3(ChunkUpload)" enabled="true">
+              <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.value"></stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+              <stringProp name="HTTPSampler.domain"></stringProp>
+              <stringProp name="HTTPSampler.port"></stringProp>
+              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+              <stringProp name="HTTPSampler.protocol">https</stringProp>
+              <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+              <stringProp name="HTTPSampler.path">/restful/services/obj_ops/chunked_upload?offset=0&amp;cu_id=${CHUNK.INIT.CUID}</stringProp>
+              <stringProp name="HTTPSampler.method">POST</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.DO_MULTIPART_POST">true</boolProp>
+              <elementProp name="HTTPsampler.Files" elementType="HTTPFileArgs">
+                <collectionProp name="HTTPFileArgs.files">
+                  <elementProp name="/root/200MB-3" elementType="HTTPFileArg">
+                    <stringProp name="File.path">/root/200MB-3</stringProp>
+                    <stringProp name="File.paramname">003</stringProp>
+                    <stringProp name="File.mimetype"></stringProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+              <boolProp name="HTTPSampler.monitor">false</boolProp>
+              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            </HTTPSamplerProxy>
+            <hashTree>
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP 標頭管理員" enabled="true">
+                <collectionProp name="HeaderManager.headers">
+                  <elementProp name="" elementType="Header">
+                    <stringProp name="Header.name">Authorization</stringProp>
+                    <stringProp name="Header.value">${COSA.TICKET}</stringProp>
+                  </elementProp>
+                  <elementProp name="" elementType="Header">
+                    <stringProp name="Header.name">content-type</stringProp>
+                    <stringProp name="Header.value">application/octet-stream </stringProp>
+                  </elementProp>
+                </collectionProp>
+              </HeaderManager>
+              <hashTree/>
+              <BSFPostProcessor guiclass="TestBeanGUI" testclass="BSFPostProcessor" testname="BSF PostProcessor" enabled="true">
+                <stringProp name="scriptLanguage">javascript</stringProp>
+                <stringProp name="parameters"></stringProp>
+                <stringProp name="filename"></stringProp>
+                <stringProp name="script">eval(&apos;var SearchResponse = &apos; + prev.getResponseDataAsString());
+if (SearchResponse.statuscode == &quot;0&quot;) {
+	vars.put(&quot;CHUNK.UPLOAD.CID3&quot;, SearchResponse.c_id);
+
+}
+else {
+	ctx.getThread().stop();
+	//ctx.getThreadGroup().startNextLoop();
+}ˇ</stringProp>
+              </BSFPostProcessor>
+              <hashTree/>
+            </hashTree>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Chunked upload - 4(ChunkUpload)" enabled="true">
+              <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.value"></stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+              <stringProp name="HTTPSampler.domain"></stringProp>
+              <stringProp name="HTTPSampler.port"></stringProp>
+              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+              <stringProp name="HTTPSampler.protocol">https</stringProp>
+              <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+              <stringProp name="HTTPSampler.path">/restful/services/obj_ops/chunked_upload?offset=0&amp;cu_id=${CHUNK.INIT.CUID}</stringProp>
+              <stringProp name="HTTPSampler.method">POST</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.DO_MULTIPART_POST">true</boolProp>
+              <elementProp name="HTTPsampler.Files" elementType="HTTPFileArgs">
+                <collectionProp name="HTTPFileArgs.files">
+                  <elementProp name="/root/200MB-4" elementType="HTTPFileArg">
+                    <stringProp name="File.path">/root/200MB-4</stringProp>
+                    <stringProp name="File.paramname">003</stringProp>
+                    <stringProp name="File.mimetype"></stringProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+              <boolProp name="HTTPSampler.monitor">false</boolProp>
+              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            </HTTPSamplerProxy>
+            <hashTree>
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP 標頭管理員" enabled="true">
+                <collectionProp name="HeaderManager.headers">
+                  <elementProp name="" elementType="Header">
+                    <stringProp name="Header.name">Authorization</stringProp>
+                    <stringProp name="Header.value">${COSA.TICKET}</stringProp>
+                  </elementProp>
+                  <elementProp name="" elementType="Header">
+                    <stringProp name="Header.name">content-type</stringProp>
+                    <stringProp name="Header.value">application/octet-stream </stringProp>
+                  </elementProp>
+                </collectionProp>
+              </HeaderManager>
+              <hashTree/>
+              <BSFPostProcessor guiclass="TestBeanGUI" testclass="BSFPostProcessor" testname="BSF PostProcessor" enabled="true">
+                <stringProp name="scriptLanguage">javascript</stringProp>
+                <stringProp name="parameters"></stringProp>
+                <stringProp name="filename"></stringProp>
+                <stringProp name="script">eval(&apos;var SearchResponse = &apos; + prev.getResponseDataAsString());
+if (SearchResponse.statuscode == &quot;0&quot;) {
+	vars.put(&quot;CHUNK.UPLOAD.CID4&quot;, SearchResponse.c_id);
+
+}
+else {
+	ctx.getThread().stop();
+	//ctx.getThreadGroup().startNextLoop();
+}ˇ</stringProp>
+              </BSFPostProcessor>
+              <hashTree/>
+            </hashTree>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Chunked upload - 5(ChunkUpload)" enabled="true">
+              <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.value"></stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+              <stringProp name="HTTPSampler.domain"></stringProp>
+              <stringProp name="HTTPSampler.port"></stringProp>
+              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+              <stringProp name="HTTPSampler.protocol">https</stringProp>
+              <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+              <stringProp name="HTTPSampler.path">/restful/services/obj_ops/chunked_upload?offset=0&amp;cu_id=${CHUNK.INIT.CUID}</stringProp>
+              <stringProp name="HTTPSampler.method">POST</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.DO_MULTIPART_POST">true</boolProp>
+              <elementProp name="HTTPsampler.Files" elementType="HTTPFileArgs">
+                <collectionProp name="HTTPFileArgs.files">
+                  <elementProp name="/root/200MB-5" elementType="HTTPFileArg">
+                    <stringProp name="File.path">/root/200MB-5</stringProp>
+                    <stringProp name="File.paramname">003</stringProp>
+                    <stringProp name="File.mimetype"></stringProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+              <boolProp name="HTTPSampler.monitor">false</boolProp>
+              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            </HTTPSamplerProxy>
+            <hashTree>
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP 標頭管理員" enabled="true">
+                <collectionProp name="HeaderManager.headers">
+                  <elementProp name="" elementType="Header">
+                    <stringProp name="Header.name">Authorization</stringProp>
+                    <stringProp name="Header.value">${COSA.TICKET}</stringProp>
+                  </elementProp>
+                  <elementProp name="" elementType="Header">
+                    <stringProp name="Header.name">content-type</stringProp>
+                    <stringProp name="Header.value">application/octet-stream </stringProp>
+                  </elementProp>
+                </collectionProp>
+              </HeaderManager>
+              <hashTree/>
+              <BSFPostProcessor guiclass="TestBeanGUI" testclass="BSFPostProcessor" testname="BSF PostProcessor" enabled="true">
+                <stringProp name="scriptLanguage">javascript</stringProp>
+                <stringProp name="parameters"></stringProp>
+                <stringProp name="filename"></stringProp>
+                <stringProp name="script">eval(&apos;var SearchResponse = &apos; + prev.getResponseDataAsString());
+if (SearchResponse.statuscode == &quot;0&quot;) {
+	vars.put(&quot;CHUNK.UPLOAD.CID5&quot;, SearchResponse.c_id);
+
+}
+else {
+	ctx.getThread().stop();
+	//ctx.getThreadGroup().startNextLoop();
+}ˇ</stringProp>
+              </BSFPostProcessor>
+              <hashTree/>
+            </hashTree>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Chunked upload - 6(ChunkUpload)" enabled="true">
+              <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.value"></stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+              <stringProp name="HTTPSampler.domain"></stringProp>
+              <stringProp name="HTTPSampler.port"></stringProp>
+              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+              <stringProp name="HTTPSampler.protocol">https</stringProp>
+              <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+              <stringProp name="HTTPSampler.path">/restful/services/obj_ops/chunked_upload?offset=0&amp;cu_id=${CHUNK.INIT.CUID}</stringProp>
+              <stringProp name="HTTPSampler.method">POST</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.DO_MULTIPART_POST">true</boolProp>
+              <elementProp name="HTTPsampler.Files" elementType="HTTPFileArgs">
+                <collectionProp name="HTTPFileArgs.files">
+                  <elementProp name="/root/200MB-6" elementType="HTTPFileArg">
+                    <stringProp name="File.path">/root/200MB-6</stringProp>
+                    <stringProp name="File.paramname">003</stringProp>
+                    <stringProp name="File.mimetype"></stringProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+              <boolProp name="HTTPSampler.monitor">false</boolProp>
+              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            </HTTPSamplerProxy>
+            <hashTree>
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP 標頭管理員" enabled="true">
+                <collectionProp name="HeaderManager.headers">
+                  <elementProp name="" elementType="Header">
+                    <stringProp name="Header.name">Authorization</stringProp>
+                    <stringProp name="Header.value">${COSA.TICKET}</stringProp>
+                  </elementProp>
+                  <elementProp name="" elementType="Header">
+                    <stringProp name="Header.name">content-type</stringProp>
+                    <stringProp name="Header.value">application/octet-stream </stringProp>
+                  </elementProp>
+                </collectionProp>
+              </HeaderManager>
+              <hashTree/>
+              <BSFPostProcessor guiclass="TestBeanGUI" testclass="BSFPostProcessor" testname="BSF PostProcessor" enabled="true">
+                <stringProp name="scriptLanguage">javascript</stringProp>
+                <stringProp name="parameters"></stringProp>
+                <stringProp name="filename"></stringProp>
+                <stringProp name="script">eval(&apos;var SearchResponse = &apos; + prev.getResponseDataAsString());
+if (SearchResponse.statuscode == &quot;0&quot;) {
+	vars.put(&quot;CHUNK.UPLOAD.CID6&quot;, SearchResponse.c_id);
+
+}
+else {
+	ctx.getThread().stop();
+	//ctx.getThreadGroup().startNextLoop();
+}ˇ</stringProp>
+              </BSFPostProcessor>
+              <hashTree/>
+            </hashTree>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Chunked upload - 7(ChunkUpload)" enabled="true">
+              <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.value"></stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+              <stringProp name="HTTPSampler.domain"></stringProp>
+              <stringProp name="HTTPSampler.port"></stringProp>
+              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+              <stringProp name="HTTPSampler.protocol">https</stringProp>
+              <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+              <stringProp name="HTTPSampler.path">/restful/services/obj_ops/chunked_upload?offset=0&amp;cu_id=${CHUNK.INIT.CUID}</stringProp>
+              <stringProp name="HTTPSampler.method">POST</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.DO_MULTIPART_POST">true</boolProp>
+              <elementProp name="HTTPsampler.Files" elementType="HTTPFileArgs">
+                <collectionProp name="HTTPFileArgs.files">
+                  <elementProp name="/root/200MB-7" elementType="HTTPFileArg">
+                    <stringProp name="File.path">/root/200MB-7</stringProp>
+                    <stringProp name="File.paramname">003</stringProp>
+                    <stringProp name="File.mimetype"></stringProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+              <boolProp name="HTTPSampler.monitor">false</boolProp>
+              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            </HTTPSamplerProxy>
+            <hashTree>
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP 標頭管理員" enabled="true">
+                <collectionProp name="HeaderManager.headers">
+                  <elementProp name="" elementType="Header">
+                    <stringProp name="Header.name">Authorization</stringProp>
+                    <stringProp name="Header.value">${COSA.TICKET}</stringProp>
+                  </elementProp>
+                  <elementProp name="" elementType="Header">
+                    <stringProp name="Header.name">content-type</stringProp>
+                    <stringProp name="Header.value">application/octet-stream </stringProp>
+                  </elementProp>
+                </collectionProp>
+              </HeaderManager>
+              <hashTree/>
+              <BSFPostProcessor guiclass="TestBeanGUI" testclass="BSFPostProcessor" testname="BSF PostProcessor" enabled="true">
+                <stringProp name="scriptLanguage">javascript</stringProp>
+                <stringProp name="parameters"></stringProp>
+                <stringProp name="filename"></stringProp>
+                <stringProp name="script">eval(&apos;var SearchResponse = &apos; + prev.getResponseDataAsString());
+if (SearchResponse.statuscode == &quot;0&quot;) {
+	vars.put(&quot;CHUNK.UPLOAD.CID7&quot;, SearchResponse.c_id);
+
+}
+else {
+	ctx.getThread().stop();
+	//ctx.getThreadGroup().startNextLoop();
+}ˇ</stringProp>
+              </BSFPostProcessor>
+              <hashTree/>
+            </hashTree>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Chunked upload - 8(ChunkUpload)" enabled="true">
+              <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.value"></stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+              <stringProp name="HTTPSampler.domain"></stringProp>
+              <stringProp name="HTTPSampler.port"></stringProp>
+              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+              <stringProp name="HTTPSampler.protocol">https</stringProp>
+              <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+              <stringProp name="HTTPSampler.path">/restful/services/obj_ops/chunked_upload?offset=0&amp;cu_id=${CHUNK.INIT.CUID}</stringProp>
+              <stringProp name="HTTPSampler.method">POST</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.DO_MULTIPART_POST">true</boolProp>
+              <elementProp name="HTTPsampler.Files" elementType="HTTPFileArgs">
+                <collectionProp name="HTTPFileArgs.files">
+                  <elementProp name="/root/200MB-8" elementType="HTTPFileArg">
+                    <stringProp name="File.path">/root/200MB-8</stringProp>
+                    <stringProp name="File.paramname">003</stringProp>
+                    <stringProp name="File.mimetype"></stringProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+              <boolProp name="HTTPSampler.monitor">false</boolProp>
+              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            </HTTPSamplerProxy>
+            <hashTree>
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP 標頭管理員" enabled="true">
+                <collectionProp name="HeaderManager.headers">
+                  <elementProp name="" elementType="Header">
+                    <stringProp name="Header.name">Authorization</stringProp>
+                    <stringProp name="Header.value">${COSA.TICKET}</stringProp>
+                  </elementProp>
+                  <elementProp name="" elementType="Header">
+                    <stringProp name="Header.name">content-type</stringProp>
+                    <stringProp name="Header.value">application/octet-stream </stringProp>
+                  </elementProp>
+                </collectionProp>
+              </HeaderManager>
+              <hashTree/>
+              <BSFPostProcessor guiclass="TestBeanGUI" testclass="BSFPostProcessor" testname="BSF PostProcessor" enabled="true">
+                <stringProp name="scriptLanguage">javascript</stringProp>
+                <stringProp name="parameters"></stringProp>
+                <stringProp name="filename"></stringProp>
+                <stringProp name="script">eval(&apos;var SearchResponse = &apos; + prev.getResponseDataAsString());
+if (SearchResponse.statuscode == &quot;0&quot;) {
+	vars.put(&quot;CHUNK.UPLOAD.CID8&quot;, SearchResponse.c_id);
+
+}
+else {
+	ctx.getThread().stop();
+	//ctx.getThreadGroup().startNextLoop();
+}ˇ</stringProp>
+              </BSFPostProcessor>
+              <hashTree/>
+            </hashTree>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Chunked upload - 9(ChunkUpload)" enabled="true">
+              <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.value"></stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+              <stringProp name="HTTPSampler.domain"></stringProp>
+              <stringProp name="HTTPSampler.port"></stringProp>
+              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+              <stringProp name="HTTPSampler.protocol">https</stringProp>
+              <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+              <stringProp name="HTTPSampler.path">/restful/services/obj_ops/chunked_upload?offset=0&amp;cu_id=${CHUNK.INIT.CUID}</stringProp>
+              <stringProp name="HTTPSampler.method">POST</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.DO_MULTIPART_POST">true</boolProp>
+              <elementProp name="HTTPsampler.Files" elementType="HTTPFileArgs">
+                <collectionProp name="HTTPFileArgs.files">
+                  <elementProp name="/root/200MB-9" elementType="HTTPFileArg">
+                    <stringProp name="File.path">/root/200MB-9</stringProp>
+                    <stringProp name="File.paramname">003</stringProp>
+                    <stringProp name="File.mimetype"></stringProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+              <boolProp name="HTTPSampler.monitor">false</boolProp>
+              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            </HTTPSamplerProxy>
+            <hashTree>
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP 標頭管理員" enabled="true">
+                <collectionProp name="HeaderManager.headers">
+                  <elementProp name="" elementType="Header">
+                    <stringProp name="Header.name">Authorization</stringProp>
+                    <stringProp name="Header.value">${COSA.TICKET}</stringProp>
+                  </elementProp>
+                  <elementProp name="" elementType="Header">
+                    <stringProp name="Header.name">content-type</stringProp>
+                    <stringProp name="Header.value">application/octet-stream </stringProp>
+                  </elementProp>
+                </collectionProp>
+              </HeaderManager>
+              <hashTree/>
+              <BSFPostProcessor guiclass="TestBeanGUI" testclass="BSFPostProcessor" testname="BSF PostProcessor" enabled="true">
+                <stringProp name="scriptLanguage">javascript</stringProp>
+                <stringProp name="parameters"></stringProp>
+                <stringProp name="filename"></stringProp>
+                <stringProp name="script">eval(&apos;var SearchResponse = &apos; + prev.getResponseDataAsString());
+if (SearchResponse.statuscode == &quot;0&quot;) {
+	vars.put(&quot;CHUNK.UPLOAD.CID9&quot;, SearchResponse.c_id);
+
+}
+else {
+	ctx.getThread().stop();
+	//ctx.getThreadGroup().startNextLoop();
+}ˇ</stringProp>
+              </BSFPostProcessor>
+              <hashTree/>
+            </hashTree>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Chunked upload - 10(ChunkUpload)" enabled="true">
+              <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.value"></stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+              <stringProp name="HTTPSampler.domain"></stringProp>
+              <stringProp name="HTTPSampler.port"></stringProp>
+              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+              <stringProp name="HTTPSampler.protocol">https</stringProp>
+              <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+              <stringProp name="HTTPSampler.path">/restful/services/obj_ops/chunked_upload?offset=0&amp;cu_id=${CHUNK.INIT.CUID}</stringProp>
+              <stringProp name="HTTPSampler.method">POST</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.DO_MULTIPART_POST">true</boolProp>
+              <elementProp name="HTTPsampler.Files" elementType="HTTPFileArgs">
+                <collectionProp name="HTTPFileArgs.files">
+                  <elementProp name="/root/200MB-10" elementType="HTTPFileArg">
+                    <stringProp name="File.path">/root/200MB-10</stringProp>
+                    <stringProp name="File.paramname">003</stringProp>
+                    <stringProp name="File.mimetype"></stringProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+              <boolProp name="HTTPSampler.monitor">false</boolProp>
+              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            </HTTPSamplerProxy>
+            <hashTree>
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP 標頭管理員" enabled="true">
+                <collectionProp name="HeaderManager.headers">
+                  <elementProp name="" elementType="Header">
+                    <stringProp name="Header.name">Authorization</stringProp>
+                    <stringProp name="Header.value">${COSA.TICKET}</stringProp>
+                  </elementProp>
+                  <elementProp name="" elementType="Header">
+                    <stringProp name="Header.name">content-type</stringProp>
+                    <stringProp name="Header.value">application/octet-stream </stringProp>
+                  </elementProp>
+                </collectionProp>
+              </HeaderManager>
+              <hashTree/>
+              <BSFPostProcessor guiclass="TestBeanGUI" testclass="BSFPostProcessor" testname="BSF PostProcessor" enabled="true">
+                <stringProp name="scriptLanguage">javascript</stringProp>
+                <stringProp name="parameters"></stringProp>
+                <stringProp name="filename"></stringProp>
+                <stringProp name="script">eval(&apos;var SearchResponse = &apos; + prev.getResponseDataAsString());
+if (SearchResponse.statuscode == &quot;0&quot;) {
+	vars.put(&quot;CHUNK.UPLOAD.CID10&quot;, SearchResponse.c_id);
+
+}
+else {
+	ctx.getThread().stop();
+	//ctx.getThreadGroup().startNextLoop();
+}ˇ</stringProp>
+              </BSFPostProcessor>
+              <hashTree/>
+            </hashTree>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Commit chunked upload (ChunkUpload)" enabled="true">
+              <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.value">{&quot;chunks&quot;:[{&quot;order&quot;:1,&quot;c_id&quot;:&quot;${CHUNK.UPLOAD.CID1}&quot;,&quot;offset&quot;:0,&quot;length&quot;:209715200},{&quot;order&quot;:2,&quot;c_id&quot;:&quot;${CHUNK.UPLOAD.CID2}&quot;,&quot;offset&quot;:0,&quot;length&quot;:209715200},{&quot;order&quot;:3,&quot;c_id&quot;:&quot;${CHUNK.UPLOAD.CID3}&quot;,&quot;offset&quot;:0,&quot;length&quot;:209715200},{&quot;order&quot;:4,&quot;c_id&quot;:&quot;${CHUNK.UPLOAD.CID4}&quot;,&quot;offset&quot;:0,&quot;length&quot;:209715200},{&quot;order&quot;:5,&quot;c_id&quot;:&quot;${CHUNK.UPLOAD.CID5}&quot;,&quot;offset&quot;:0,&quot;length&quot;:209715200},{&quot;order&quot;:6,&quot;c_id&quot;:&quot;${CHUNK.UPLOAD.CID6}&quot;,&quot;offset&quot;:0,&quot;length&quot;:209715200},{&quot;order&quot;:7,&quot;c_id&quot;:&quot;${CHUNK.UPLOAD.CID7}&quot;,&quot;offset&quot;:0,&quot;length&quot;:209715200},{&quot;order&quot;:8,&quot;c_id&quot;:&quot;${CHUNK.UPLOAD.CID8}&quot;,&quot;offset&quot;:0,&quot;length&quot;:209715200},{&quot;order&quot;:9,&quot;c_id&quot;:&quot;${CHUNK.UPLOAD.CID9}&quot;,&quot;offset&quot;:0,&quot;length&quot;:209715200},{&quot;order&quot;:10,&quot;c_id&quot;:&quot;${CHUNK.UPLOAD.CID10}&quot;,&quot;offset&quot;:0,&quot;length&quot;:209715200}]}</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+              <stringProp name="HTTPSampler.domain"></stringProp>
+              <stringProp name="HTTPSampler.port"></stringProp>
+              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+              <stringProp name="HTTPSampler.protocol">https</stringProp>
+              <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+              <stringProp name="HTTPSampler.path">/restful/services/obj_ops/commit_chunked_upload?cu_id=${CHUNK.INIT.CUID}</stringProp>
+              <stringProp name="HTTPSampler.method">POST</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+              <boolProp name="HTTPSampler.monitor">false</boolProp>
+              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            </HTTPSamplerProxy>
+            <hashTree>
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP 標頭管理員" enabled="true">
+                <collectionProp name="HeaderManager.headers">
+                  <elementProp name="" elementType="Header">
+                    <stringProp name="Header.name">Authorization</stringProp>
+                    <stringProp name="Header.value">${COSA.TICKET}</stringProp>
+                  </elementProp>
+                  <elementProp name="" elementType="Header">
+                    <stringProp name="Header.name">content-type</stringProp>
+                    <stringProp name="Header.value">application/json</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </HeaderManager>
+              <hashTree/>
+              <BSFPostProcessor guiclass="TestBeanGUI" testclass="BSFPostProcessor" testname="BSF PostProcessor" enabled="true">
+                <stringProp name="scriptLanguage">javascript</stringProp>
+                <stringProp name="parameters"></stringProp>
+                <stringProp name="filename"></stringProp>
+                <stringProp name="script">eval(&apos;var SearchResponse = &apos; + prev.getResponseDataAsString());
+if (SearchResponse.statuscode == &quot;0&quot;) {
+
+}
+else {
+	ctx.getThread().stop();
+	//ctx.getThreadGroup().startNextLoop();
+}ˇ</stringProp>
+              </BSFPostProcessor>
+              <hashTree/>
+            </hashTree>
+            <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="admin login -&gt; remove users" enabled="true"/>
+            <hashTree>
+              <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="admin login" enabled="true">
+                <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+                  <collectionProp name="Arguments.arguments">
+                    <elementProp name="u" elementType="HTTPArgument">
+                      <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                      <stringProp name="Argument.name">u</stringProp>
+                      <stringProp name="Argument.value">admin</stringProp>
+                      <stringProp name="Argument.metadata">=</stringProp>
+                      <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                    </elementProp>
+                    <elementProp name="pw" elementType="HTTPArgument">
+                      <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                      <stringProp name="Argument.name">pw</stringProp>
+                      <stringProp name="Argument.value">admin</stringProp>
+                      <stringProp name="Argument.metadata">=</stringProp>
+                      <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                    </elementProp>
+                  </collectionProp>
+                </elementProp>
+                <stringProp name="HTTPSampler.domain"></stringProp>
+                <stringProp name="HTTPSampler.port"></stringProp>
+                <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                <stringProp name="HTTPSampler.protocol"></stringProp>
+                <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+                <stringProp name="HTTPSampler.path">/dologin.jsp</stringProp>
+                <stringProp name="HTTPSampler.method">POST</stringProp>
+                <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+                <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+                <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+                <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+                <boolProp name="HTTPSampler.monitor">false</boolProp>
+                <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+              </HTTPSamplerProxy>
+              <hashTree>
+                <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP header manager" enabled="true">
+                  <collectionProp name="HeaderManager.headers">
+                    <elementProp name="Content-Type" elementType="Header">
+                      <stringProp name="Header.name">Content-Type</stringProp>
+                      <stringProp name="Header.value">application/x-www-form-urlencoded</stringProp>
+                    </elementProp>
+                    <elementProp name="Accept-Language" elementType="Header">
+                      <stringProp name="Header.name">Accept-Language</stringProp>
+                      <stringProp name="Header.value">zh-TW,zh;q=0.8,en-US;q=0.6,en;q=0.4</stringProp>
+                    </elementProp>
+                    <elementProp name="Accept" elementType="Header">
+                      <stringProp name="Header.name">Accept</stringProp>
+                      <stringProp name="Header.value">application/json, text/javascript, */*; q=0.01</stringProp>
+                    </elementProp>
+                    <elementProp name="Origin" elementType="Header">
+                      <stringProp name="Header.name">Origin</stringProp>
+                      <stringProp name="Header.value">http://${COSA.HOST}</stringProp>
+                    </elementProp>
+                    <elementProp name="User-Agent" elementType="Header">
+                      <stringProp name="Header.name">User-Agent</stringProp>
+                      <stringProp name="Header.value">Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.64 Safari/537.31</stringProp>
+                    </elementProp>
+                    <elementProp name="Accept-Charset" elementType="Header">
+                      <stringProp name="Header.name">Accept-Charset</stringProp>
+                      <stringProp name="Header.value">Big5,utf-8;q=0.7,*;q=0.3</stringProp>
+                    </elementProp>
+                    <elementProp name="X-Requested-With" elementType="Header">
+                      <stringProp name="Header.name">X-Requested-With</stringProp>
+                      <stringProp name="Header.value">XMLHttpRequest</stringProp>
+                    </elementProp>
+                    <elementProp name="Referer" elementType="Header">
+                      <stringProp name="Header.name">Referer</stringProp>
+                      <stringProp name="Header.value">http://${COSA.HOST}/login.jsp</stringProp>
+                    </elementProp>
+                    <elementProp name="Accept-Encoding" elementType="Header">
+                      <stringProp name="Header.name">Accept-Encoding</stringProp>
+                      <stringProp name="Header.value">gzip,deflate,sdch</stringProp>
+                    </elementProp>
+                  </collectionProp>
+                </HeaderManager>
+                <hashTree/>
+                <UserParameters guiclass="UserParametersGui" testclass="UserParameters" testname="form body parameters" enabled="true">
+                  <collectionProp name="UserParameters.names">
+                    <stringProp name="2079517131">FORM.u</stringProp>
+                    <stringProp name="40521585">FORM.pw</stringProp>
+                  </collectionProp>
+                  <collectionProp name="UserParameters.thread_values">
+                    <collectionProp name="-977969932">
+                      <stringProp name="-1333098890">${COSA.ADMIN.NAME}</stringProp>
+                      <stringProp name="-1331245648">${COSA.ADMIN.PASS}</stringProp>
+                    </collectionProp>
+                  </collectionProp>
+                  <boolProp name="UserParameters.per_iteration">false</boolProp>
+                </UserParameters>
+                <hashTree/>
+                <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="json statuscode 200" enabled="true">
+                  <collectionProp name="Asserion.test_strings">
+                    <stringProp name="175355001">&quot;statuscode&quot;:200</stringProp>
+                  </collectionProp>
+                  <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+                  <boolProp name="Assertion.assume_success">false</boolProp>
+                  <intProp name="Assertion.test_type">2</intProp>
+                </ResponseAssertion>
+                <hashTree/>
+                <com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor guiclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.gui.JSONPathExtractorGui" testclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor" testname="set COSA.TICKET" enabled="true">
+                  <stringProp name="VAR">COSA.TICKET</stringProp>
+                  <stringProp name="JSONPATH">$.ticket</stringProp>
+                </com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor>
+                <hashTree/>
+              </hashTree>
+              <IfController guiclass="IfControllerPanel" testclass="IfController" testname="if login ok" enabled="true">
+                <stringProp name="IfController.condition">${JMeterThread.last_sample_ok}</stringProp>
+                <boolProp name="IfController.evaluateAll">false</boolProp>
+              </IfController>
+              <hashTree>
+                <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+                  <boolProp name="LoopController.continue_forever">true</boolProp>
+                  <stringProp name="LoopController.loops">1</stringProp>
+                </LoopController>
+                <hashTree>
+                  <CounterConfig guiclass="CounterConfigGui" testclass="CounterConfig" testname="counter" enabled="true">
+                    <stringProp name="CounterConfig.start">${COSA.USER.IDX.FIRST}</stringProp>
+                    <stringProp name="CounterConfig.end"></stringProp>
+                    <stringProp name="CounterConfig.incr">1</stringProp>
+                    <stringProp name="CounterConfig.name">N</stringProp>
+                    <stringProp name="CounterConfig.format"></stringProp>
+                    <boolProp name="CounterConfig.per_user">false</boolProp>
+                  </CounterConfig>
+                  <hashTree/>
+                  <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="re-login if ticket timeout" enabled="false"/>
+                  <hashTree>
+                    <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="verify ticket" enabled="true">
+                      <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+                        <collectionProp name="Arguments.arguments"/>
+                      </elementProp>
+                      <stringProp name="HTTPSampler.domain"></stringProp>
+                      <stringProp name="HTTPSampler.port"></stringProp>
+                      <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                      <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                      <stringProp name="HTTPSampler.protocol"></stringProp>
+                      <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+                      <stringProp name="HTTPSampler.path">/restful/services/auth/verify?ticket=${QUERY.ticket}</stringProp>
+                      <stringProp name="HTTPSampler.method">GET</stringProp>
+                      <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+                      <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+                      <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+                      <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+                      <boolProp name="HTTPSampler.monitor">false</boolProp>
+                      <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+                      <stringProp name="TestPlan.comments">200 valid | 401 invalid</stringProp>
+                    </HTTPSamplerProxy>
+                    <hashTree>
+                      <UserParameters guiclass="UserParametersGui" testclass="UserParameters" testname="query string parameters" enabled="true">
+                        <collectionProp name="UserParameters.names">
+                          <stringProp name="-1620352238">QUERY.ticket</stringProp>
+                        </collectionProp>
+                        <collectionProp name="UserParameters.thread_values">
+                          <collectionProp name="928949649">
+                            <stringProp name="-1312007404">${COSA.TICKET}</stringProp>
+                          </collectionProp>
+                        </collectionProp>
+                        <boolProp name="UserParameters.per_iteration">false</boolProp>
+                      </UserParameters>
+                      <hashTree/>
+                      <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="json statuscode 200" enabled="true">
+                        <collectionProp name="Asserion.test_strings">
+                          <stringProp name="175355001">&quot;statuscode&quot;:200</stringProp>
+                        </collectionProp>
+                        <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+                        <boolProp name="Assertion.assume_success">false</boolProp>
+                        <intProp name="Assertion.test_type">2</intProp>
+                      </ResponseAssertion>
+                      <hashTree/>
+                    </hashTree>
+                    <IfController guiclass="IfControllerPanel" testclass="IfController" testname="if invalid ticket" enabled="true">
+                      <stringProp name="IfController.condition">! ${JMeterThread.last_sample_ok}</stringProp>
+                      <boolProp name="IfController.evaluateAll">false</boolProp>
+                    </IfController>
+                    <hashTree>
+                      <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="admin re-login" enabled="true">
+                        <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+                          <collectionProp name="Arguments.arguments">
+                            <elementProp name="u" elementType="HTTPArgument">
+                              <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                              <stringProp name="Argument.name">u</stringProp>
+                              <stringProp name="Argument.value">${FORM.u}</stringProp>
+                              <stringProp name="Argument.metadata">=</stringProp>
+                              <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                            </elementProp>
+                            <elementProp name="pw" elementType="HTTPArgument">
+                              <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                              <stringProp name="Argument.name">pw</stringProp>
+                              <stringProp name="Argument.value">${FORM.pw}</stringProp>
+                              <stringProp name="Argument.metadata">=</stringProp>
+                              <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                            </elementProp>
+                          </collectionProp>
+                        </elementProp>
+                        <stringProp name="HTTPSampler.domain"></stringProp>
+                        <stringProp name="HTTPSampler.port"></stringProp>
+                        <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                        <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                        <stringProp name="HTTPSampler.protocol"></stringProp>
+                        <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+                        <stringProp name="HTTPSampler.path">/dologin.jsp</stringProp>
+                        <stringProp name="HTTPSampler.method">POST</stringProp>
+                        <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+                        <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+                        <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+                        <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+                        <boolProp name="HTTPSampler.monitor">false</boolProp>
+                        <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+                      </HTTPSamplerProxy>
+                      <hashTree>
+                        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP header manager" enabled="true">
+                          <collectionProp name="HeaderManager.headers">
+                            <elementProp name="Content-Type" elementType="Header">
+                              <stringProp name="Header.name">Content-Type</stringProp>
+                              <stringProp name="Header.value">application/x-www-form-urlencoded</stringProp>
+                            </elementProp>
+                            <elementProp name="Accept-Language" elementType="Header">
+                              <stringProp name="Header.name">Accept-Language</stringProp>
+                              <stringProp name="Header.value">zh-TW,zh;q=0.8,en-US;q=0.6,en;q=0.4</stringProp>
+                            </elementProp>
+                            <elementProp name="Accept" elementType="Header">
+                              <stringProp name="Header.name">Accept</stringProp>
+                              <stringProp name="Header.value">application/json, text/javascript, */*; q=0.01</stringProp>
+                            </elementProp>
+                            <elementProp name="Origin" elementType="Header">
+                              <stringProp name="Header.name">Origin</stringProp>
+                              <stringProp name="Header.value">http://${COSA.HOST}</stringProp>
+                            </elementProp>
+                            <elementProp name="User-Agent" elementType="Header">
+                              <stringProp name="Header.name">User-Agent</stringProp>
+                              <stringProp name="Header.value">Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.64 Safari/537.31</stringProp>
+                            </elementProp>
+                            <elementProp name="Accept-Charset" elementType="Header">
+                              <stringProp name="Header.name">Accept-Charset</stringProp>
+                              <stringProp name="Header.value">Big5,utf-8;q=0.7,*;q=0.3</stringProp>
+                            </elementProp>
+                            <elementProp name="X-Requested-With" elementType="Header">
+                              <stringProp name="Header.name">X-Requested-With</stringProp>
+                              <stringProp name="Header.value">XMLHttpRequest</stringProp>
+                            </elementProp>
+                            <elementProp name="Referer" elementType="Header">
+                              <stringProp name="Header.name">Referer</stringProp>
+                              <stringProp name="Header.value">http://${COSA.HOST}/login.jsp</stringProp>
+                            </elementProp>
+                            <elementProp name="Accept-Encoding" elementType="Header">
+                              <stringProp name="Header.name">Accept-Encoding</stringProp>
+                              <stringProp name="Header.value">gzip,deflate,sdch</stringProp>
+                            </elementProp>
+                          </collectionProp>
+                        </HeaderManager>
+                        <hashTree/>
+                        <UserParameters guiclass="UserParametersGui" testclass="UserParameters" testname="form body parameters" enabled="true">
+                          <collectionProp name="UserParameters.names">
+                            <stringProp name="2079517131">FORM.u</stringProp>
+                            <stringProp name="40521585">FORM.pw</stringProp>
+                          </collectionProp>
+                          <collectionProp name="UserParameters.thread_values">
+                            <collectionProp name="-977969932">
+                              <stringProp name="-1333098890">${COSA.ADMIN.NAME}</stringProp>
+                              <stringProp name="-1331245648">${COSA.ADMIN.PASS}</stringProp>
+                            </collectionProp>
+                          </collectionProp>
+                          <boolProp name="UserParameters.per_iteration">false</boolProp>
+                        </UserParameters>
+                        <hashTree/>
+                        <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="json statuscode 200" enabled="true">
+                          <collectionProp name="Asserion.test_strings">
+                            <stringProp name="175355001">&quot;statuscode&quot;:200</stringProp>
+                          </collectionProp>
+                          <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+                          <boolProp name="Assertion.assume_success">false</boolProp>
+                          <intProp name="Assertion.test_type">2</intProp>
+                        </ResponseAssertion>
+                        <hashTree/>
+                        <com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor guiclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.gui.JSONPathExtractorGui" testclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor" testname="set COSA.TICKET" enabled="true">
+                          <stringProp name="VAR">COSA.TICKET</stringProp>
+                          <stringProp name="JSONPATH">$.ticket</stringProp>
+                        </com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor>
+                        <hashTree/>
+                      </hashTree>
+                    </hashTree>
+                  </hashTree>
+                  <IfController guiclass="IfControllerPanel" testclass="IfController" testname="if ticket ok" enabled="true">
+                    <stringProp name="IfController.condition">${JMeterThread.last_sample_ok}</stringProp>
+                    <boolProp name="IfController.evaluateAll">false</boolProp>
+                  </IfController>
+                  <hashTree>
+                    <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="remove share folder user Iris" enabled="true">
+                      <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="使用者自訂變數" enabled="true">
+                        <collectionProp name="Arguments.arguments"/>
+                      </elementProp>
+                      <stringProp name="HTTPSampler.domain"></stringProp>
+                      <stringProp name="HTTPSampler.port"></stringProp>
+                      <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                      <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                      <stringProp name="HTTPSampler.protocol"></stringProp>
+                      <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+                      <stringProp name="HTTPSampler.path">/restful/services/people/${QUERY.user.name}/delete?alf_ticket=${QUERY.ticket}</stringProp>
+                      <stringProp name="HTTPSampler.method">POST</stringProp>
+                      <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
+                      <boolProp name="HTTPSampler.auto_redirects">true</boolProp>
+                      <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+                      <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+                      <boolProp name="HTTPSampler.monitor">false</boolProp>
+                      <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+                    </HTTPSamplerProxy>
+                    <hashTree>
+                      <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP header manager" enabled="true">
+                        <collectionProp name="HeaderManager.headers">
+                          <elementProp name="Content-Type" elementType="Header">
+                            <stringProp name="Header.name">Content-Type</stringProp>
+                            <stringProp name="Header.value">application/json</stringProp>
+                          </elementProp>
+                          <elementProp name="Accept-Language" elementType="Header">
+                            <stringProp name="Header.name">Accept-Language</stringProp>
+                            <stringProp name="Header.value">zh-TW,zh;q=0.8,en-US;q=0.6,en;q=0.4</stringProp>
+                          </elementProp>
+                          <elementProp name="Accept" elementType="Header">
+                            <stringProp name="Header.name">Accept</stringProp>
+                            <stringProp name="Header.value">application/json, text/javascript, */*; q=0.01</stringProp>
+                          </elementProp>
+                          <elementProp name="Origin" elementType="Header">
+                            <stringProp name="Header.name">Origin</stringProp>
+                            <stringProp name="Header.value">http://${COSA.HOST}</stringProp>
+                          </elementProp>
+                          <elementProp name="User-Agent" elementType="Header">
+                            <stringProp name="Header.name">User-Agent</stringProp>
+                            <stringProp name="Header.value">Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.64 Safari/537.31</stringProp>
+                          </elementProp>
+                          <elementProp name="Accept-Charset" elementType="Header">
+                            <stringProp name="Header.name">Accept-Charset</stringProp>
+                            <stringProp name="Header.value">Big5,utf-8;q=0.7,*;q=0.3</stringProp>
+                          </elementProp>
+                          <elementProp name="X-Requested-With" elementType="Header">
+                            <stringProp name="Header.name">X-Requested-With</stringProp>
+                            <stringProp name="Header.value">XMLHttpRequest</stringProp>
+                          </elementProp>
+                          <elementProp name="Referer" elementType="Header">
+                            <stringProp name="Header.name">Referer</stringProp>
+                            <stringProp name="Header.value">http://${COSA.HOST}/manage/managerusers.jsp</stringProp>
+                          </elementProp>
+                          <elementProp name="Accept-Encoding" elementType="Header">
+                            <stringProp name="Header.name">Accept-Encoding</stringProp>
+                            <stringProp name="Header.value">gzip,deflate,sdch</stringProp>
+                          </elementProp>
+                        </collectionProp>
+                      </HeaderManager>
+                      <hashTree/>
+                      <UserParameters guiclass="UserParametersGui" testclass="UserParameters" testname="query string parameters" enabled="true">
+                        <collectionProp name="UserParameters.names">
+                          <stringProp name="-1620352238">QUERY.ticket</stringProp>
+                          <stringProp name="-410767096">QUERY.user.name</stringProp>
+                        </collectionProp>
+                        <collectionProp name="UserParameters.thread_values">
+                          <collectionProp name="1674309867">
+                            <stringProp name="-1312007404">${COSA.TICKET}</stringProp>
+                            <stringProp name="3240979">iris</stringProp>
+                          </collectionProp>
+                        </collectionProp>
+                        <boolProp name="UserParameters.per_iteration">false</boolProp>
+                      </UserParameters>
+                      <hashTree/>
+                      <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="json statuscode 200" enabled="true">
+                        <collectionProp name="Asserion.test_strings">
+                          <stringProp name="175355001">&quot;statuscode&quot;:200</stringProp>
+                        </collectionProp>
+                        <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+                        <boolProp name="Assertion.assume_success">false</boolProp>
+                        <intProp name="Assertion.test_type">2</intProp>
+                      </ResponseAssertion>
+                      <hashTree/>
+                    </hashTree>
+                  </hashTree>
+                </hashTree>
+              </hashTree>
+            </hashTree>
+          </hashTree>
+        </hashTree>
+        <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="Gaussian Random Timer" enabled="false">
+          <stringProp name="ConstantTimer.delay">${TIMER.MEAN.MS}</stringProp>
+          <stringProp name="RandomTimer.range">${TIMER.STD.MS}</stringProp>
+        </GaussianRandomTimer>
+        <hashTree/>
+        <ResultCollector guiclass="SimpleDataWriter" testclass="ResultCollector" testname="Log - CSV" enabled="false">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>false</message>
+              <threadName>true</threadName>
+              <dataType>false</dataType>
+              <encoding>false</encoding>
+              <assertions>false</assertions>
+              <subresults>false</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <hostname>true</hostname>
+              <threadCounts>true</threadCounts>
+              <sampleCount>true</sampleCount>
+              <idleTime>true</idleTime>
+            </value>
+          </objProp>
+          <stringProp name="filename">${__P(user.dir)}/logs/${__TestPlanName}/${PLAN.RUNID}/weblog.csv.jtl</stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <ResultCollector guiclass="SimpleDataWriter" testclass="ResultCollector" testname="Automation Log - CSV" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>false</message>
+              <threadName>false</threadName>
+              <dataType>false</dataType>
+              <encoding>false</encoding>
+              <assertions>false</assertions>
+              <subresults>false</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <hostname>true</hostname>
+              <threadCounts>true</threadCounts>
+              <sampleCount>true</sampleCount>
+              <idleTime>true</idleTime>
+            </value>
+          </objProp>
+          <stringProp name="filename">/tmp/auto-check-func.log</stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <kg.apc.jmeter.reporters.FlexibleFileWriter guiclass="kg.apc.jmeter.reporters.FlexibleFileWriterGui" testclass="kg.apc.jmeter.reporters.FlexibleFileWriter" testname="Log for Jenkins" enabled="true">
+          <stringProp name="filename">/tmp/jenkins.jtl</stringProp>
+          <stringProp name="columns">endTime|,|responseTime|,|latency|,|responseCode|,boolean|isSuccsessful|,|sampleLabel|\r\n</stringProp>
+          <boolProp name="overwrite">true</boolProp>
+          <stringProp name="header">timestamp,elapsed,latency,responseCode,success,URL
+</stringProp>
+          <stringProp name="footer"></stringProp>
+        </kg.apc.jmeter.reporters.FlexibleFileWriter>
+        <hashTree/>
+        <ResultCollector guiclass="SimpleDataWriter" testclass="ResultCollector" testname="Error Log - XML" enabled="false">
+          <boolProp name="ResultCollector.error_logging">true</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>false</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>false</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>false</subresults>
+              <responseData>true</responseData>
+              <samplerData>true</samplerData>
+              <xml>true</xml>
+              <fieldNames>false</fieldNames>
+              <responseHeaders>true</responseHeaders>
+              <requestHeaders>true</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <url>true</url>
+              <hostname>true</hostname>
+              <threadCounts>true</threadCounts>
+              <sampleCount>true</sampleCount>
+              <idleTime>true</idleTime>
+            </value>
+          </objProp>
+          <stringProp name="filename">${__P(user.dir)}/logs/${__TestPlanName}/${PLAN.RUNID}/weblog.xml.jtl</stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>true</dataType>
+            <encoding>true</encoding>
+            <assertions>true</assertions>
+            <subresults>true</subresults>
+            <responseData>true</responseData>
+            <samplerData>true</samplerData>
+            <xml>true</xml>
+            <fieldNames>false</fieldNames>
+            <responseHeaders>true</responseHeaders>
+            <requestHeaders>true</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+            <url>true</url>
+            <fileName>true</fileName>
+            <hostname>true</hostname>
+            <threadCounts>true</threadCounts>
+            <sampleCount>true</sampleCount>
+            <idleTime>true</idleTime>
+          </value>
+        </objProp>
+        <stringProp name="filename">/tmp/auto-check-func.errorlog</stringProp>
+      </ResultCollector>
+      <hashTree/>
+      <ResultCollector guiclass="StatVisualizer" testclass="ResultCollector" testname="Aggregate Report" enabled="true">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>false</message>
+            <threadName>true</threadName>
+            <dataType>false</dataType>
+            <encoding>false</encoding>
+            <assertions>false</assertions>
+            <subresults>false</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>true</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+            <hostname>true</hostname>
+            <threadCounts>true</threadCounts>
+            <sampleCount>true</sampleCount>
+            <idleTime>true</idleTime>
+          </value>
+        </objProp>
+        <stringProp name="filename"></stringProp>
+      </ResultCollector>
+      <hashTree/>
+      <ResultCollector guiclass="TableVisualizer" testclass="ResultCollector" testname="View Results in Table" enabled="true">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>false</message>
+            <threadName>true</threadName>
+            <dataType>false</dataType>
+            <encoding>false</encoding>
+            <assertions>false</assertions>
+            <subresults>false</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>true</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+            <hostname>true</hostname>
+            <threadCounts>true</threadCounts>
+            <sampleCount>true</sampleCount>
+            <idleTime>true</idleTime>
+          </value>
+        </objProp>
+        <stringProp name="filename"></stringProp>
+      </ResultCollector>
+      <hashTree/>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>

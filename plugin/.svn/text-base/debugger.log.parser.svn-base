@@ -1,0 +1,229 @@
+#!/bin/bash
+
+# all standard out will be redirect to this file
+OUT=/tmp/ana-api-chain.log
+
+# library START
+declare -a apiStatArray
+declare -a apiNumStack
+declare -a elapsedTimeInStack
+declare -a cpuTimeInStack
+declare -i cpuTimeInStackCounter=0
+function push() {
+	cpuTimeInStackCounter=$(($cpuTimeInStackCounter + 1))
+
+	local t=$1
+	cpuTimeInStack[$cpuTimeInStackCounter]=$t
+
+	local t2=$2
+	elapsedTimeInStack[$cpuTimeInStackCounter]=$t2
+
+	local t3=$3
+	apiNumStack[$cpuTimeInStackCounter]=$t3
+}
+function pop() {
+	local t=${cpuTimeInStack[$cpuTimeInStackCounter]}
+	printf -v $1 "%s" "$t"
+
+	local t2=${elapsedTimeInStack[$cpuTimeInStackCounter]}
+	printf -v $2 "%s" "$t2"
+
+	local t3=${apiNumStack[$cpuTimeInStackCounter]}
+	printf -v $3 "%s" "$t3"
+
+	cpuTimeInStackCounter=$(($cpuTimeInStackCounter - 1))
+}
+function div() {
+	local depth=$1
+	local left=$2
+	local cpuTime=$3
+	local elapsedTime=$4
+	local entryAPIElapsedTime=$5
+#	echo "[DEBUG] depth,left,cpuTime,elapsedTime,entryAPIElapsedTime = $depth,$left,$cpuTime,$elapsedTime,$entryAPIElapsedTime" >> $OUT
+	local apiPath=$6
+
+	local canvasWidth=1000
+	local itemHeight=50
+	local itemLeft=0
+	local itemBottom=0
+	local itemWidth=0
+	local itemWidthCPU=0
+	local itemTitle=
+	local itemTitleCPU=
+
+	#set itemLeft TODO
+	itemLeft=$left
+	#set itemBottom
+	itemBottom=$(($depth * $itemHeight))
+	#set itemWidth TODO
+	itemWidth=$(($elapsedTime * 1))
+	#set itemWidthCPU
+	itemWidthCPU=$(($itemWidth * $cpuTime / $elapsedTime))
+	#set itemTitle TODO
+	itemTitle="$apiPath elapsed time $elapsedTime ms"
+	#set itemTitleCPU TODO
+	itemTitleCPU="$apiPath cpu time $cpuTime ms"
+
+	echo "<div style='left:${itemLeft}px; bottom:${itemBottom}px; position:absolute; width:${itemWidth}px; height:${itemHeight}px; background-color:yellow; border-style:solid; border-width:1px;' title='$itemTitle'></div>" >> $OUT
+	echo "<div style='left:${itemLeft}px; bottom:${itemBottom}px; position:absolute; width:${itemWidthCPU}px; height:${itemHeight}px; background-color:red; border-style:solid; border-width:1px;' title='$itemTitleCPU'></div>" >> $OUT
+}
+function callstack() {
+        # set indent counter for message layout
+        local indentCounter=0
+
+	# set indent array for storing left position
+	local indentLeftArray
+	local i
+	for ((i=0; i<9; i++))
+	do
+		indentLeftArray[$i]=0
+	done
+
+        # set API number counter
+        local apiNumCounter=0
+
+	# set entry point API elapsed time
+	local entryAPIElapsedT1=$(head -n 1 $LOG | awk -F '|' '{print $1}')
+	local entryAPIElapsedT2=$(tail -n 1 $LOG | awk -F '|' '{print $1}')
+	local entryAPIElapsedTime=$(($entryAPIElapsedT2 - $entryAPIElapsedT1))
+
+	echo -e "Printing an API call stack" >> $OUT
+	while read line
+	do
+		local elapsedTime=$(echo $line | awk -F '|' '{print $1}')
+		local cpuTime=$(echo $line | awk -F '|' '{print $2}')
+		local apiPath=$(echo $line | awk -F '|' '{print $8}')
+		local inOrOut=$(echo $line | awk -F '|' '{print $9}')
+		if [ "$inOrOut" == " Req. in" ]; then
+			apiNumCounter=$(($apiNumCounter + 1))
+			indentCounter=$(($indentCounter + 1))
+			push $cpuTime $elapsedTime $apiNumCounter
+		else
+			pop cpuTimeIn elapsedTimeIn apiNum
+			local cpuTimeOut=$cpuTime
+			local elapsedTimeOut=$elapsedTime
+
+                        cpuTime=$((($cpuTimeOut-$cpuTimeIn) /1000/1000))
+                        elapsedTime=$(($elapsedTimeOut-$elapsedTimeIn))
+
+			div $indentCounter ${indentLeftArray[$indentCounter]} $cpuTime $elapsedTime $entryAPIElapsedTime "$apiPath"
+
+			indentLeftArray[$indentCounter]=$(( ${indentLeftArray[$indentCounter]} + $elapsedTime))
+			for ((i=$(($indentCounter + 1)); i<9; i++))
+			do
+				indentLeftArray[$i]=${indentLeftArray[$indentCounter]}
+			done
+			indentCounter=$(($indentCounter - 1))
+		fi
+	done < $LOG
+	echo "" >> $OUT
+}
+function calltree() {
+	# set indent counter for message layout
+	local indentCounter=0
+
+	# set indent array for storing elapsed time of each parent API
+	local parentElapsedTimeArray
+
+        # set API number counter
+        local apiNumCounter=0
+
+	echo -e "Printing an API call tree" >> $OUT
+	while read line
+	do
+		local apiPath=$(echo $line | awk -F '|' '{print $8}')
+	        local inOrOut=$(echo $line | awk -F '|' '{print $9}')
+
+		if [ "$inOrOut" == " Req. in" ]; then
+			apiNumCounter=$(($apiNumCounter + 1))
+			indentCounter=$(($indentCounter + 1))
+
+                	echo -en "[$apiNumCounter]\t" >> $OUT
+			local i
+	                for ((i=1; i<$indentCounter; i++))
+        	        do
+                	        echo -n "    " >> $OUT
+	                done
+
+			local ratio=
+			if [ $indentCounter -gt 1 ]; then
+				local currentAPIStat=${apiStatArray[$apiNumCounter]}
+				local parentAPIStat=${parentElapsedTimeArray[$(($indentCounter - 1))]}
+
+				local currentAPIElapsedTime=$(echo $currentAPIStat | awk '{print $1}' | awk -F '/' '{print $2}')
+				local parentAPIElapsedTime=$(echo $parentAPIStat | awk '{print $1}' | awk -F '/' '{print $2}')
+
+				ratio="[$(($currentAPIElapsedTime * 100 / $parentAPIElapsedTime))%]"
+				#[19/24 ms (79%) / 3/28 ms (10%)]
+			fi
+			echo "$apiPath${apiStatArray[$apiNumCounter]}$ratio @" >> $OUT
+
+			parentElapsedTimeArray[$indentCounter]=${apiStatArray[$apiNumCounter]}
+		else
+			indentCounter=$(($indentCounter - 1))
+		fi
+	done < $LOG
+
+	echo -e "\nNOTE: CPU time ONLY considers JVM HTTP threads.\n" >> $OUT
+}
+function apitime() {
+	# set API number counter
+	local apiNumCounter=0
+
+	# set total cpu time counter in millisecond
+	local cpuTimeTotalCounter=0
+
+	# calculate each API time
+	while read line
+	do
+
+		local elapsedTime=$(echo $line | awk -F '|' '{print $1}')
+		local cpuTime=$(echo $line | awk -F '|' '{print $2}')
+		local apiPath=$(echo $line | awk -F '|' '{print $8}')
+		local inOrOut=$(echo $line | awk -F '|' '{print $9}')
+
+		if [ "$inOrOut" == " Req. in" ]; then
+			apiNumCounter=$(($apiNumCounter + 1))
+			push $cpuTime $elapsedTime $apiNumCounter
+
+		else
+			pop cpuTimeIn elapsedTimeIn apiNum
+			local cpuTimeOut=$cpuTime
+			local elapsedTimeOut=$elapsedTime
+
+			cpuTime=$((($cpuTimeOut-$cpuTimeIn) /1000/1000))
+			elapsedTime=$(($elapsedTimeOut-$elapsedTimeIn))
+			local ratio=$(($cpuTime * 100 / $elapsedTime))
+
+			cpuTimeTotalCounter=$(($cpuTimeTotalCounter + $cpuTime))
+
+			apiStatArray[$apiNum]="$cpuTime/$elapsedTime ms ($ratio%)"
+	fi
+
+	done < $LOG
+	echo -e "CPU time of whole API chain: $cpuTimeTotalCounter ms @" >> $OUT
+
+	# calculate elapsed Time of entry point API
+	local elapsedTimeIn=$(head -n 1 $LOG | awk -F '|' '{print $1}')
+	local elapsedTimeOut=$(tail -n 1 $LOG | awk -F '|' '{print $1}')
+	local elapsedTime=$(($elapsedTimeOut - $elapsedTimeIn))
+	echo "Elapsed time of entry point API: $elapsedTime ms @" >> $OUT
+
+	# calculate percentage of CPU time over elapsed time
+	echo "Percentage of CPU time over elapsed time: $(($cpuTimeTotalCounter * 100 / $elapsedTime))% @" >> $OUT
+}
+# library END
+
+# set log file path
+LOG=/tmp/tomcat.debug.log
+[ $# -gt 0 ] && LOG=$1
+
+if [ $# -gt 2 ]; then
+        sed -n  $2','$3'p' $LOG > /tmp/x.log
+        LOG=/tmp/x.log
+fi
+
+echo -e "\nPARSER LOG" >> $OUT
+apitime
+calltree
+callstack

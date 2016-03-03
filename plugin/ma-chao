@@ -1,0 +1,97 @@
+#!/bin/bash
+
+# set environment variable
+JWD=/root/jmeter-working-dir
+
+# set cfg file path
+CFG=$JWD/props/ana-api-chain.cfg
+
+function set_properties() {
+	local key=$1
+	local value=$2
+
+	sed -i 's/'$key'=.*/'$key'='$value'/' "$CFG"
+}
+function show_usage() {
+	echo "usgae: $0 <http|https> <port> <host> <user account> <user password> <thread loop> <file loop> <timer in ms>"
+	echo "example: $0 https 443 140.92.25.182 webuser1 aaaa 1 1 1000"
+}
+function split_log() {
+	local dir=$1
+	local log="$dir/ana-api-chain.log"
+
+	local htmlCounter=0
+	local html="$dir/$htmlCounter.html"
+	local indexPage="$dir/index.html"
+	while read line
+	do
+		if [ "$line" == "JMETER LOG" ]; then
+			htmlCounter=$(($htmlCounter + 1))
+			html="$dir/$htmlCounter.html"
+			echo "<pre style='font-size: 8pt'>$line" >> $html
+		elif [ "$line" == "Printing an API call stack" ]; then
+			echo "$line</pre>" >> $html
+
+cat >> $html <<JS
+<script>
+function zoom(m) {
+  var divs=document.getElementsByTagName("div");
+  for (var i=0; i<divs.length; i++) {
+        if ( divs[i].style.width != "" ) {
+                var w=divs[i].style.width.replace("px","");
+                var l=divs[i].style.left.replace("px","");
+
+                divs[i].style.width=w*m + "px";
+                divs[i].style.left=l*m + "px";
+        }
+  }
+}
+</script>
+<input type="button" value="zoom in" onclick="zoom(2);"/>
+<input type="button" value="zoom out" onclick="zoom(1/2);"/>
+JS
+		else
+			echo "$line" | grep '^Operation:' 2>&1 > /dev/null
+			[ $? -eq 0 ] && echo "<a href='$htmlCounter.html'>$htmlCounter.html</a> - $line<br/>" >> "$indexPage"
+
+			echo "$line" >> $html
+		fi
+
+	done < "$log"
+}
+
+#set_properties "COSA.HOST" "localhost"
+
+if [ $# -lt 8 ]; then
+	show_usage
+	echo FAIL
+	exit 1
+else
+	set_properties "COSA.PROTOCOL" $1
+	set_properties "COSA.PORT" $2
+	set_properties "COSA.HOST" $3
+	set_properties "COSA.USER.NAME" $4
+	set_properties "COSA.USER.PASS" $5
+	set_properties "COSA.THREAD.LOOPS" $6
+	set_properties "COSA.UPLOAD.LOOPS" $7
+	set_properties "COSA.TIMER.MS" $8
+
+	#start loading
+	$JWD/bin/exec-plan -t ana-api-chain -n
+	#end loading
+
+	if [ $? -eq 0 ]; then
+
+		# archive log and split it into html files
+		if [ -d /var/www/ma-chao ]; then
+			dir="/var/www/ma-chao/$(date +%Y-%m%d-%H%M-%S)"
+			mkdir "$dir" && cp /tmp/ana-api-chain.* "$dir" && split_log "$dir"
+		fi
+
+		echo "Done"
+		exit 0
+	fi
+fi
+
+echo FAIL
+exit 2
