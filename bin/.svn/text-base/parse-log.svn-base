@@ -1,0 +1,60 @@
+#!/bin/bash
+
+#set absolute path of this script
+pushd `dirname $0` > /dev/null
+SCRIPTPATH=`pwd -P`
+popd > /dev/null
+
+#set jmeter working dir
+BASEDIR="$SCRIPTPATH/../"
+
+function showHelp() {
+	echo "usage : -h "
+	echo "usage : -t <err|perf|workload> -l <log file>"
+	exit 0
+}
+function _err() {
+	cd "$(dirname "$logFILE")"
+
+	ERRLOG="$(basename "$logFILE")"
+
+	. "$SCRIPTPATH/lib.mk.err.charts"
+
+	#saved as single file
+	#algo1
+
+	#saved as seperate files
+	algo2
+}
+function _perf() {
+	cd "$(dirname "$logFILE")"
+
+	. "$SCRIPTPATH/lib.mk.perf.charts" 140.92.26.64	#TODO
+
+	_cpu #TODO
+}
+function _load() {
+	cd "$(dirname "$logFILE")"
+
+	LOADLOG="$(basename "$logFILE")"
+
+	bash "$SCRIPTPATH/lib.mk.load.charts" -f "$LOADLOG"
+}
+	cmd="showHelp"
+        while getopts hl:t: opt
+        do
+                case $opt in
+		h)	;;
+		l)	logFILE="$OPTARG" ;;
+		t)	logTYPE="$OPTARG"
+			case $logTYPE in
+			"err" | "perf" | "load") ;;
+			*) showHelp ;;
+			esac ;;
+                *)	exit -1 ;;
+                esac
+        done
+	[ "$logTYPE" != "" -a "$logFILE" != "" ] && cmd="_$logTYPE"
+	$cmd
+
+

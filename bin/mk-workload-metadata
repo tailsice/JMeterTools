@@ -1,0 +1,36 @@
+#!/bin/bash
+
+#
+# sample workload
+# /tmp/txt
+# sample out content
+# file1,/tmp/txt/1KB/1KB-1.txt
+# file2,/tmp/txt/1KB/1KB-2.txt
+# file3,/tmp/txt/10KB/10KB-1.txt
+#
+
+if [ -z $1 ]; then
+	echo "\$1 workload dir absolute path missed"
+	exit -1
+fi
+WDIRPATH=$1
+
+echo $WDIRPATH | grep '^/' > /dev/null 2>&1
+if [ ! $? -eq 0 ]; then
+	echo "\$1 workload dir absolute path missed"
+	exit -1
+fi
+#echo "[DEBUG] workload dir absolute path: $WDIRPATH"
+
+i=1;
+cat /dev/null > workload.metadata
+while read subdir
+do
+#	echo "[DEBUG] $subdir"
+	echo "[INFO] processing $subdir"
+	while read txtfile
+	do
+		echo "file$i,$subdir/$txtfile" >> workload.metadata
+		i=$(expr $i + 1)
+	done < <(ls $subdir)
+done < <(find "$WDIRPATH" -maxdepth 1 -mindepth 1 -type d)

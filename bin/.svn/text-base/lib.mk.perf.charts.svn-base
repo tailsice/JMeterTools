@@ -1,0 +1,275 @@
+#!/bin/bash
+
+JAR="/opt/org/apache/jmeter/lib/ext/CMDRunner.jar"
+if [ ! -f "$JAR" ]; then
+	echo "exception: $JAR not found"
+	exit -1
+fi
+
+if [ -z $1 ]; then
+	echo "exception: \$1 for IP not found"
+	exit -1
+fi
+IP=$1
+
+GRANULARITY_MS=1000
+
+function _io {
+#io.mbps
+
+	java -jar $JAR --tool Reporter \
+	--input-jtl "perflog.io.csv.jtl" \
+	--plugin-type "PerfMon" \
+	--generate-png "io.mbps.png" \
+	--generate-csv "io.mbps.csv" \
+	--granulation $GRANULARITY_MS \
+	--relative-times yes \
+	--include-labels "$IP Disks I/O unit=mb:writebytes,$IP Disks I/O unit=mb:readbytes"
+
+}
+
+function _io_iops {
+#io.iops
+
+	java -jar $JAR --tool Reporter \
+        --input-jtl "perflog.io.csv.jtl" \
+        --plugin-type "PerfMon" \
+        --generate-png "io.iops.png" \
+        --generate-csv "io.iops.csv" \
+        --granulation $GRANULARITY_MS \
+        --relative-times yes \
+        --include-labels "$IP Disks I/O writes,$IP Disks I/O reads"
+
+}
+
+<<io.iops.sda1
+java -jar $JAR --tool Reporter \
+        --input-jtl "perflog.io.csv.jtl" \
+        --plugin-type "PerfMon" \
+        --generate-png "io.iops.sda1.png" \
+        --generate-csv "io.iops.sda1.csv" \
+        --granulation $GRANULARITY_MS \
+        --relative-times yes \
+        --include-labels "$IP Disks I/O writes:fs=/dev/sda1,$IP Disks I/O reads:fs=/dev/sda1"
+io.iops.sda1
+
+<<io.iops.sdb1
+java -jar $JAR --tool Reporter \
+        --input-jtl "perflog.io.csv.jtl" \
+        --plugin-type "PerfMon" \
+        --generate-png "io.iops.sdb1.png" \
+        --generate-csv "io.iops.sdb1.csv" \
+        --granulation $GRANULARITY_MS \
+        --relative-times yes \
+        --include-labels "$IP Disks I/O writes:fs=/dev/sdb1,$IP Disks I/O reads:fs=/dev/sdb1"
+io.iops.sdb1
+
+function _io_iops_root {
+#io.iops.root
+
+	java -jar $JAR --tool Reporter \
+        --input-jtl "perflog.io.csv.jtl" \
+        --plugin-type "PerfMon" \
+        --generate-png "io.iops.root.png" \
+        --generate-csv "io.iops.root.csv" \
+        --granulation $GRANULARITY_MS \
+        --relative-times yes \
+        --include-labels "$IP Disks I/O / writes,$IP Disks I/O / reads"
+
+}
+
+function _io_iops_storage {
+#io.iops.storage
+
+	java -jar $JAR --tool Reporter \
+        --input-jtl "perflog.io.csv.jtl" \
+        --plugin-type "PerfMon" \
+        --generate-png "io.iops.storage.png" \
+        --generate-csv "io.iops.storage.csv" \
+        --granulation $GRANULARITY_MS \
+        --relative-times yes \
+        --include-labels "$IP Disks I/O /storage writes,$IP Disks I/O /storage reads"
+
+}
+
+function _io_iops_cloudgwfiles {
+#io.iops.cloudgwfiles
+
+	java -jar $JAR --tool Reporter \
+        --input-jtl "perflog.io.csv.jtl" \
+        --plugin-type "PerfMon" \
+        --generate-png "io.iops.cloudgwfiles.png" \
+        --generate-csv "io.iops.cloudgwfiles.csv" \
+        --granulation $GRANULARITY_MS \
+        --relative-times yes \
+        --include-labels "$IP Disks I/O /mnt/cloudgwfiles writes,$IP Disks I/O /mnt/cloudgwfiles reads"
+
+}
+
+function _io_iops_mysql {
+#io.iops.mysql
+
+	java -jar $JAR --tool Reporter \
+        --input-jtl "perflog.io.csv.jtl" \
+        --plugin-type "PerfMon" \
+        --generate-png "io.iops.mysql.png" \
+        --generate-csv "io.iops.mysql.csv" \
+        --granulation $GRANULARITY_MS \
+        --relative-times yes \
+        --include-labels "$IP Disks I/O /storage/COSA/MYSQL writes,$IP Disks I/O /storage/COSA/MYSQL reads"
+
+}
+
+function _io_iops_mongo {
+#io.iops.mongo
+
+	java -jar $JAR --tool Reporter \
+        --input-jtl "perflog.io.csv.jtl" \
+        --plugin-type "PerfMon" \
+        --generate-png "io.iops.mongo.png" \
+        --generate-csv "io.iops.mongo.csv" \
+        --granulation $GRANULARITY_MS \
+        --relative-times yes \
+        --include-labels "$IP Disks I/O /storage/COSA/Mongo writes,$IP Disks I/O /storage/COSA/Mongo reads"
+
+}
+
+function _io_iops_alfresco_lucene_indexes {
+#io.iops.alfresco.lucene-indexes
+
+	java -jar $JAR --tool Reporter \
+        --input-jtl "perflog.io.csv.jtl" \
+        --plugin-type "PerfMon" \
+        --generate-png "io.iops.alfresco.lucene-indexes.png" \
+        --generate-csv "io.iops.alfresco.lucene-indexes.csv" \
+        --granulation $GRANULARITY_MS \
+        --relative-times yes \
+        --include-labels "$IP Disks I/O /storage/COSA/ALFRESCO/lucene-indexes writes,$IP Disks I/O /storage/COSA/ALFRESCO/lucene-indexes reads"
+
+}
+
+function _io_iops_temp {
+#io.iops.temp
+
+	java -jar $JAR --tool Reporter \
+        --input-jtl "perflog.io.csv.jtl" \
+        --plugin-type "PerfMon" \
+        --generate-png "io.iops.temp.png" \
+        --generate-csv "io.iops.temp.csv" \
+        --granulation $GRANULARITY_MS \
+        --relative-times yes \
+        --include-labels "$IP Disks I/O /storage/COSA/firmware/runtime/TOMCAT/temp writes,$IP Disks I/O /storage/COSA/firmware/runtime/TOMCAT/temp reads"
+
+}
+
+function _net_mbps {
+#net.mbps
+
+	java -jar $JAR --tool Reporter \
+        --input-jtl "perflog.net.csv.jtl" \
+        --plugin-type "PerfMon" \
+        --generate-png "net.mbps.png" \
+        --generate-csv "net.mbps.csv" \
+        --granulation $GRANULARITY_MS \
+        --relative-times yes \
+        --include-labels "$IP Network I/O unit=mb:bytesrecv,$IP Network I/O unit=mb:bytessent"
+
+}
+
+function _cpu {
+#cpu
+
+	java -jar $JAR --tool Reporter \
+        --input-jtl "perflog.cpu.csv.jtl" \
+        --plugin-type "PerfMon" \
+        --generate-png "cpu.png" \
+        --generate-csv "cpu.csv" \
+        --granulation $GRANULARITY_MS \
+        --relative-times yes \
+        --include-labels "$IP CPU combined,$IP CPU iowait,$IP CPU user,$IP CPU system"
+
+}
+
+function _cpu_proc {
+#cpu.proc
+
+	java -jar $JAR --tool Reporter \
+        --input-jtl "perflog.cpu.csv.jtl" \
+        --plugin-type "PerfMon" \
+        --generate-png "cpu.proc.png" \
+        --generate-csv "cpu.proc.csv" \
+        --granulation $GRANULARITY_MS \
+        --relative-times yes \
+        --include-labels "$IP CPU mysqld,$IP CPU mongod,$IP CPU tomcat"
+
+}
+
+function _cpu_core {
+#cpu.core
+
+	java -jar $JAR --tool Reporter \
+        --input-jtl "perflog.cpu.cores.csv.jtl" \
+        --plugin-type "PerfMon" \
+        --generate-png "cpu.core.png" \
+        --generate-csv "cpu.core.csv" \
+        --granulation $GRANULARITY_MS \
+        --relative-times yes
+
+}
+
+function _cpu_time {
+#cpu.time
+
+	java -jar $JAR --tool Reporter \
+        --input-jtl "perflog.cpu.time.csv.jtl" \
+        --plugin-type "PerfMon" \
+        --generate-png "cpu.time.png" \
+        --generate-csv "cpu.time.csv" \
+        --granulation $GRANULARITY_MS \
+        --relative-times yes \
+        --include-labels "$IP CPU mysqld,$IP CPU mongod,$IP CPU tomcat"
+
+}
+
+function _mem {
+#mem
+
+	java -jar $JAR --tool Reporter \
+        --input-jtl "perflog.mem.csv.jtl" \
+        --plugin-type "PerfMon" \
+        --generate-png "mem.png" \
+        --generate-csv "mem.csv" \
+        --granulation $GRANULARITY_MS \
+        --relative-times yes \
+        --include-labels "$IP Memory unit=mb:free,$IP Memory unit=mb:used,$IP Memory unit=mb:actualfree,$IP Memory unit=mb:actualused"
+
+}
+
+function _mem_proc {
+#mem.proc
+
+	java -jar $JAR --tool Reporter \
+        --input-jtl "perflog.mem.csv.jtl" \
+        --plugin-type "PerfMon" \
+        --generate-png "mem.proc.png" \
+        --generate-csv "mem.proc.csv" \
+        --granulation $GRANULARITY_MS \
+        --relative-times yes \
+        --include-labels "$IP Memory mysqld,$IP Memory mongod,$IP Memory tomcat"
+
+}
+
+
+function _netstat_est {
+#http.140.92.26.36
+
+	java -jar $JAR --tool Reporter \
+        --input-jtl "perflog.netstat.csv.jtl" \
+        --plugin-type "PerfMon" \
+        --generate-png "http.140.92.26.36.png" \
+        --generate-csv "http.140.92.26.36.csv" \
+        --granulation $GRANULARITY_MS \
+        --relative-times yes \
+        --include-labels "$IP EXEC http established from 140.92.26.36"
+
+}

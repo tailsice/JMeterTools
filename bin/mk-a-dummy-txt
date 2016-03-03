@@ -1,0 +1,32 @@
+#!/bin/bash
+
+#
+# sample content of 5 bytes
+# '00000'
+# sample content of 10 bytes
+# '00000000 '
+# sample content of 20 bytes
+# '00000000 00000000 '
+#
+
+if [ -z $1 ]; then
+	echo "\$1 file name missed"
+	exit -1
+fi
+FNAME=$1
+
+if [ -z $2 ]; then
+	echo "\$2 file size missed"
+	exit -1
+fi
+FSIZE=$2
+
+
+for ((i=0; i<$FSIZE; i++))
+do
+	if [ $(expr $i % 10 ) -eq 9 ]; then
+		echo -n ' ' >> $FNAME
+	else
+		echo -n 0 >> $FNAME
+	fi
+done

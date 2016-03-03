@@ -1,0 +1,48 @@
+#!/bin/bash
+
+#set absolute path of this script
+pushd `dirname $0` > /dev/null
+SCRIPTPATH=`pwd -P`
+popd > /dev/null
+
+#set jmeter working dir
+BASEDIR="$SCRIPTPATH/../"
+
+function showHelp() {
+	echo "usage : -h "
+	echo "usage : -t <plan name>"
+	echo "usage : -t <plan name> -p <properties file>"
+	echo "usage : -t <plan name> -p <properties file> -n"
+	echo "available plans:"
+	ls "$BASEDIR/plans" | sed 's/.jmx//' | xargs echo -n
+	echo
+	exit 0
+}
+function invokeJmeter() {
+#-l option only valid in non-gui mode
+#-p vs -q option
+
+	local runid=$(date +%m%d-%H%M)
+	jmeter	-t "$BASEDIR/plans/$planNAME.jmx" \
+		-j "$BASEDIR/tmp/jmeter.log" \
+		-l "$BASEDIR/tmp/result.log" \
+		-q "$propFILE" \
+		-Duser.dir="$BASEDIR" \
+		-JPLAN.RUNID="$runid" \
+		$flagGUI
+}
+
+	cmd="showHelp"
+        while getopts hnp:t: opt
+        do
+                case $opt in
+		h)	;;
+                n)	flagGUI="-n" ;;
+		p)	propFILE="$OPTARG" ;;
+		t)	planNAME="$OPTARG" ;;
+                *)	exit -1;;
+                esac
+        done
+	[ "$propFILE" = "" ] && propFILE="$BASEDIR/props/$planNAME.cfg"
+	[ "$planNAME" != "" -a "$propFILE" != "" ] && cmd="invokeJmeter"
+	$cmd

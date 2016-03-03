@@ -1,0 +1,236 @@
+#!/bin/bash
+
+JAR="/opt/org/apache/jmeter/lib/ext/CMDRunner.jar"
+if [ ! -f $JAR ]; then
+	echo "exception: $JAR not found"
+	exit -1
+fi
+
+JTL="weblog.csv.jtl"
+SH="$(basename $0)"
+
+function show_help() {
+	echo
+	echo "SYSNOPSIS"
+	echo -e "\t$SH [options]"
+	echo
+	echo "OPTIONS"
+	echo -e "\t-h show help"
+	echo -e "\t-a <yes|no>, aggregate rows, no by default"
+	echo -e "\t-c <chart type>, '' by default, other chart types:"
+	echo -e "\t\t* AggregateReport"
+	echo -e "\t\t* ThreadsStateOverTime"
+	echo -e "\t\t* BytesThroughputOverTime"
+	echo -e "\t\t* HitsPerSecond"
+	echo -e "\t\t* LatenciesOverTime"
+	echo -e "\t\t* ResponseCodesPerSecond"
+	echo -e "\t\t* ResponseTimesDistribution"
+	echo -e "\t\t* ResponseTimesOverTime"
+	echo -e "\t\t* ResponseTimesPercentiles"
+	echo -e "\t\t* ThroughputOverTime"
+	echo -e "\t\t* ThroughputVsThreads"
+	echo -e "\t\t* TimesVsThreads"
+	echo -e "\t\t* TransactionsPerSecond"
+	echo -e "\t\t* PageDataExtractorOverTime"
+	echo -e "\t-d <jtl file directory>, \$PWD by default"
+	echo -e "\t-f <jtl file>, \$PWD/weblog.csv.jtl by default"
+	echo -e "\t-g <granularity>, in millisecond, 500 or 1000 by default"
+	echo -e "\t-l <label>, '' by default"
+	echo -e "\t-m <limit rows>, '' by default"
+	echo -e "\t-p <yes|no>, prevent outliers, no by default"
+	echo -e "\t-r <yes|no>, relative times, yes by default"
+	echo -e "\t-s <''|true|false>, success filter, '' by default"
+	echo
+	echo "EXAMPLES"
+	echo -e "\t01. $SH -h\n"
+	echo -e "\t02. $SH \n"
+	echo -e "\t03. $SH -d /tmp \n"
+	echo -e "\t04. $SH -f /tmp/weblog.jtl \n"
+	echo -e "\t05. $SH -d /tmp -f /tmp/weblog.jtl \n"
+	echo -e "\t06. $SH -g 600000\n"
+	echo -e "\t07. $SH -m 50\n"
+	echo -e "\t08. $SH -c AggregateReport\n"
+	echo -e "\t09. $SH -c AggregateReport -s true\n"
+	echo -e "\t10. $SH -c ThreadsStateOverTime -r false\n"
+	echo -e "\t11. $SH -c TransactionsPerSecond -a yes\n"
+	echo -e "\t12. $SH -c ResponseTimesPercentiles -s true -r false -l \"login\"\n"
+	echo -e "\t13. $SH -c ResponseTimesOverTime -s true -r false -l \"login\" -g 60000\n"
+	echo -e "\t14. $SH -c ResponseTimesDistribution -p yes -g 10\n"
+	echo
+	echo "ENVIRONMENT VARIABLES"
+	echo -e "\tPWD\tdirectory which contains the jtl file - weblog.csv.jtl; also the output directory "
+	echo
+}
+
+function with_label() {
+	echo "INFO: $CHART"
+                java -jar "$JAR" --tool Reporter \
+                $SUCCESS_FILTER \
+                $RELATIVE \
+                $GEN_PNG \
+                $GRANULARITY_MS \
+                $PREVENT_OUTLIERS \
+                $AGGREGATE_ROWS \
+		$LIMIT_ROWS \
+                --input-jtl "$JTL" \
+                --plugin-type "$CHART" \
+                --generate-csv "$CHART.csv" \
+                --width 800 \
+                --height 600 \
+                --paint-gradient "yes" \
+                --paint-zeroing "yes" \
+                --line-weight 1 \
+                --include-labels "$LABEL"
+}
+
+function without_label() {
+	echo "INFO: $CHART"
+                java -jar "$JAR" --tool Reporter \
+                $SUCCESS_FILTER \
+                $RELATIVE \
+                $GEN_PNG \
+                $GRANULARITY_MS \
+                $PREVENT_OUTLIERS \
+                $AGGREGATE_ROWS \
+		$LIMIT_ROWS \
+                --input-jtl "$JTL" \
+                --plugin-type "$CHART" \
+                --generate-csv "$CHART.csv" \
+                --width 800 \
+                --height 600 \
+                --paint-gradient "yes" \
+                --paint-zeroing "yes" \
+                --line-weight 1
+}
+
+while getopts hc:g:l:r:p:d:s:a:f:m: opt
+do
+	case $opt in
+	h)
+		HELP="yes"
+		;;
+	a)
+		AGGREGATE_ROWS="$OPTARG"
+		;;
+	c)
+		CHART="$OPTARG"
+		;;
+	d)
+		DIR="$OPTARG"
+		;;
+	g)
+		GRANULARITY_MS="$OPTARG"
+		;;
+	l)
+		LABEL="$OPTARG"
+		;;
+	m)
+		LIMIT_ROWS="$OPTARG"
+		;;
+	r)
+		RELATIVE="$OPTARG"
+		;;
+	p)
+		PREVENT_OUTLIERS="$OPTARG"
+		;;
+	s)
+		SUCCESS_FILTER="$OPTARG"
+		;;
+	f)
+		JTL_FILE="$OPTARG"
+		;;
+	*)
+		;;
+	esac
+done
+
+#compose options
+case "$CHART" in
+"AggregateReport")
+	GEN_PNG=""
+	;;
+*)
+	GEN_PNG="--generate-png $CHART.png"
+	;;
+esac
+[ ! "$GRANULARITY_MS" = "" ] && GRANULARITY_MS="--granulation $GRANULARITY_MS"
+[ "$LABEL" = "" ] && LABEL=
+[ ! "$RELATIVE" = "" ] && RELATIVE="--relative-times $RELATIVE"
+[ ! "$PREVENT_OUTLIERS" = "" ] && PREVENT_OUTLIERS="--prevent-outliers $PREVENT_OUTLIERS"
+[ "$DIR" = "" ] && DIR="$PWD"
+[ ! "$SUCCESS_FILTER" = "" ] && SUCCESS_FILTER="--success-filter $SUCCESS_FILTER"
+[ ! "$AGGREGATE_ROWS" = "" ] && AGGREGATE_ROWS="--aggregate-rows $AGGREGATE_ROWS"
+[ ! "$LIMIT_ROWS" = "" ] && LIMIT_ROWS="--limit-rows $LIMIT_ROWS"
+[ ! "$JTL_FILE" = "" ] && JTL="$JTL_FILE"
+
+cd "$DIR"
+
+if [ "$HELP" = "yes" ]; then
+  show_help
+else
+  if [ "$CHART" = "" ]; then
+	CHART="AggregateReport"
+	GEN_PNG=""
+	without_label
+
+        CHART="ThreadsStateOverTime"
+        GEN_PNG="--generate-png $CHART.png"
+        without_label
+
+	CHART="BytesThroughputOverTime"
+        GEN_PNG="--generate-png $CHART.png"
+        without_label
+
+	CHART="HitsPerSecond"
+	GEN_PNG="--generate-png $CHART.png"
+	without_label
+	
+	CHART="ResponseCodesPerSecond"
+	GEN_PNG="--generate-png $CHART.png"
+	without_label
+
+#<<CANNOTAGG
+        CHART="ThroughputOverTime"
+        GEN_PNG="--generate-png $CHART.png"
+        without_label
+
+        CHART="ThroughputVsThreads"
+        GEN_PNG="--generate-png $CHART.png"
+        without_label
+#CANNOTAGG
+
+#######################################################
+
+        CHART="TransactionsPerSecond"
+        GEN_PNG="--generate-png $CHART.png"
+	AGGREGATE_ROWS="--aggregate-rows yes"
+        without_label
+
+	CHART="ResponseTimesPercentiles"
+        GEN_PNG="--generate-png $CHART.png"
+        without_label
+
+	CHART="LatenciesOverTime"
+        GEN_PNG="--generate-png $CHART.png"
+        without_label
+
+	CHART="ResponseTimesOverTime"
+        GEN_PNG="--generate-png $CHART.png"
+        without_label
+
+        CHART="TimesVsThreads"
+        GEN_PNG="--generate-png $CHART.png"
+        without_label
+
+	CHART="ResponseTimesDistribution"
+	GEN_PNG="--generate-png $CHART.png"
+	PREVENT_OUTLIERS="--prevent-outliers yes"
+	GRANULARITY_MS="--granulation 10"
+        without_label
+  elif [ "$LABEL" = "" ]; then
+	without_label
+  else
+	with_label
+  fi
+fi
+

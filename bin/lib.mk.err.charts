@@ -1,0 +1,129 @@
+#!/bin/bash
+
+perl -e 'use CGI'
+[ $? -eq 0 ] || exit -1
+
+function oneError() {
+	local lineFrom=$1
+	local lineTo=$2
+	local lineFromReqH=$3
+	local lineToReqH=$4
+	local lineFromResH=$5
+	local lineToResH=$6
+	local lineFromResD=$7
+	local lineToResD=$8
+	local lineFromQS=${9}
+	local lineToQS=${10}
+	local lineFromURL=${11}
+	local lineToURL=${12}
+#	echo "[DEBUG] oneError ($*)"
+
+
+	local label=$(sed -n ''$lineFrom','$lineFrom'p' $ERRLOG | grep -o 'lb=\".*\" rc=' | awk -F '"' '{print $2}')
+
+	if [ $ALGO_NUM -eq 1 ]; then
+		local htmlFile="$label-error-message.html"
+	else
+		local htmlFile="$label-error-message-$lineFrom.html"
+	fi
+
+
+	local errorCounter=$(expr $(grep "<h2>Request Header</h2>" "$htmlFile" 2>/dev/null | wc -l) + 1)
+	echo "<h1>==========[$errorCounter]==========</h1>" >> "$htmlFile"
+	echo "<h2>Request Header</h2>" >> "$htmlFile"
+	perl -p -e 'BEGIN { use CGI qw(unescapeHTML); } $_ = unescapeHTML($_);' < <(sed -n ''$lineFromReqH','$lineToReqH'p' $ERRLOG) >> "$htmlFile"
+#	echo "[DEBUG] oneError request header"
+
+	echo "<h2>Request URL</h2>" >> "$htmlFile"
+	perl -p -e 'BEGIN { use CGI qw(unescapeHTML); } $_ = unescapeHTML($_);' < <(sed -n ''$lineFromURL','$lineToURL'p' $ERRLOG) >> "$htmlFile"
+#	echo "[DEBUG] oneError request url"
+
+	echo "<h2>Request Query String</h2>" >> "$htmlFile"
+	perl -p -e 'BEGIN { use CGI qw(unescapeHTML); } $_ = unescapeHTML($_);' < <(sed -n ''$lineFromQS','$lineToQS'p' $ERRLOG) >> "$htmlFile"
+#	echo "[DEBUG] oneError query string"
+
+	echo "<h2>Response Header</h2>" >> "$htmlFile"
+	perl -p -e 'BEGIN { use CGI qw(unescapeHTML); } $_ = unescapeHTML($_);' < <(sed -n ''$lineFromResH','$lineToResH'p' $ERRLOG) >> "$htmlFile"
+#	echo "[DEBUG] oneError response header"
+
+	echo "<h2>Response Data</h2>" >> "$htmlFile"
+	perl -p -e 'BEGIN { use CGI qw(unescapeHTML); } $_ = unescapeHTML($_);' < <(sed -n ''$lineFromResD','$lineToResD'p' $ERRLOG) >> "$htmlFile"
+#	echo "[DEBUG] oneError response data"
+
+	echo "appending error message to $htmlFile"
+}
+function _scanError() {
+	local lineFromArr=($(grep -n "<httpSample " "$ERRLOG" | awk -F ':' '{print $1}'))
+	local lineToArr=($(grep -n "</httpSample>" "$ERRLOG" | awk -F ':' '{print $1}'))
+
+	local lineFromReqHArr=($(grep -n "<requestHeader class" "$ERRLOG" | awk -F ':' '{print $1}'))
+	local lineToReqHArr=($(grep -n "</requestHeader>" "$ERRLOG" | awk -F ':' '{print $1}'))
+
+	local lineFromResHArr=($(grep -n "<responseHeader class" "$ERRLOG" | awk -F ':' '{print $1}'))
+	local lineToResHArr=($(grep -n "</responseHeader>" "$ERRLOG" | awk -F ':' '{print $1}'))
+
+	local lineFromResDArr=($(grep -n "<responseData class" "$ERRLOG" | awk -F ':' '{print $1}'))
+	local lineToResDArr=($(grep -n "</responseData>" "$ERRLOG" | awk -F ':' '{print $1}'))	#BUG
+
+	#CHECK and ADJUST
+	local size=${#lineFromArr[@]}
+	local i=0
+	for ((i=0; i<$size; i++))
+	do
+		#CHECK
+		echo "[DEBUG] checking $(expr $i + 1) / $size"
+		if [ ${lineToResDArr[$i]} -gt ${lineToArr[$i]} ]; then
+			#ADJUST
+			local j=${#lineToResDArr[@]}
+			for ((j=${#lineToResDArr[@]}; j>$i; j--))
+			do
+				echo "[DEBUG] adjusting $j > $i"
+				lineToResDArr[$j]=${lineToResDArr[$(expr $j - 1)]}
+			done
+			lineToResDArr[$j]=${lineFromResDArr[$i]}
+		fi
+	done
+	#
+
+
+	local lineFromQSArr=($(grep -n "<queryString class" "$ERRLOG" | awk -F ':' '{print $1}'))
+	local lineToQSArr=($(grep -n "</queryString>" "$ERRLOG" | awk -F ':' '{print $1}'))
+
+	local lineFromURLArr=($(grep -n "<java.net.URL>" "$ERRLOG" | awk -F ':' '{print $1}'))
+	local lineToURLArr=($(grep -n "</java.net.URL>" "$ERRLOG" | awk -F ':' '{print $1}'))
+
+	local size=${#lineFromArr[@]}
+	echo "total $size errors"
+	local i=0
+	for ((i=0; i<$size; i++))
+	do
+		echo -en "$(expr $i + 1) / $size\t"
+
+		#DEBUG
+		if [ ${lineToResDArr[$i]} -gt ${lineToArr[$i]} ]; then
+			echo "[DEBUG] BUG!"
+			echo "${lineFromArr[$i]} ${lineToArr[$i]} ${lineFromReqHArr[$i]} ${lineToReqHArr[$i]} ${lineFromResHArr[$i]} ${lineToResHArr[$i]} ${lineFromResDArr[$i]} ${lineToResDArr[$i]} ${lineFromQSArr[$i]} ${lineToQSArr[$i]} ${lineFromURLArr[$i]} ${lineToURLArr[$i]}"
+			exit -1
+		fi
+
+		oneError ${lineFromArr[$i]} ${lineToArr[$i]} ${lineFromReqHArr[$i]} ${lineToReqHArr[$i]} ${lineFromResHArr[$i]} ${lineToResHArr[$i]} ${lineFromResDArr[$i]} ${lineToResDArr[$i]} ${lineFromQSArr[$i]} ${lineToQSArr[$i]} ${lineFromURLArr[$i]} ${lineToURLArr[$i]}
+	done
+	echo "Total $i errors in $(ls *.html 2>/dev/null | wc -l) category"
+}
+function _statError() {
+	while read line
+	do
+		local count=$(grep "<h2>Request Header</h2>"  "$line" | wc -l)
+		echo "$line [$count]"
+	done < <(ls *-error-message.html 2>/dev/null)
+}
+function algo1() {
+	ALGO_NUM=1
+	_scanError
+	_statError
+}
+function algo2() {
+	ALGO_NUM=2
+	_scanError
+}
+
